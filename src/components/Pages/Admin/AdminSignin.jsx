@@ -5,8 +5,8 @@ import * as yup from "yup"
 import { Link } from "react-router-dom"
 
 
-const userSchema = yup.object ({
-    userName:yup.string().required(),
+const schema = yup.object ({
+    
     email: yup.string().email(),
     password: yup.string().min(6),
 });
@@ -18,7 +18,7 @@ export default function AdminSignin() {
     
     formState: { errors },
   } = useForm({
-    resolver : yupResolver(userSchema),
+    resolver : yupResolver(schema),
   })
 
   const onSubmit = async (data) => {
@@ -54,7 +54,7 @@ export default function AdminSignin() {
       />
       {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
 
-      <input type="submit" className="rounded-md bg-black p-2 text-white cursor-pointer" value="Sign Up" />
+      <input type="submit" className="rounded-md bg-black p-2 text-white cursor-pointer" value="Sign in" />
 
       <p className="mt-4">
         Create New

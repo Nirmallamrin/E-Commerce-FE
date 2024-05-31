@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 
-const userSchema = yup.object({
+const adminSchema = yup.object({
   userName: yup.string().required(),
   email: yup.string().email(),
   password: yup.string().min(6),
@@ -17,7 +17,7 @@ export default function AdminSignup() {
 
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(userSchema),
+    resolver: yupResolver(adminSchema),
   });
 
   const onSubmit = async (data) => {

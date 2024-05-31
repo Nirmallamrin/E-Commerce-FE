@@ -19,7 +19,7 @@ export default function UserSignup() {
     formState: { errors },
   } = useForm({
     resolver : yupResolver(userSchema),
-  })
+  });
 
   const onSubmit = async (data) => {
 
@@ -62,15 +62,9 @@ export default function UserSignup() {
 
         <input type="submit" className="rounded-md bg-black p-2 text-white cursor-pointer" value="Sign Up" />
 
-        {message && (
-          <p className={`text-sm ${message.type === "success" ? "text-green-500" : "text-red-500"}`}>
-            {message.text}
-          </p>
-        )}
-
         <p className="mt-4">
-          User already exists?
-          <Link to="/admin/signin" className="ml-2 rounded-md bg-slate-200 py-1 px-2 text-gray-600">
+          User already exists? {" "}
+          <Link to="/users/signin" className="ml-2 rounded-md bg-slate-200 py-1 px-2 text-gray-600">
             Signin
           </Link>
         </p>

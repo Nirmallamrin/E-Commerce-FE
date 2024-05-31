@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShoppingCartIcon, UserIcon } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/solid';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -22,7 +23,9 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <ul className="flex space-x-2">
+            <Link to='/users/signin'>
             <li className="text-white cursor-pointer hover:underline">Login</li>
+            </Link>
           </ul>
           <ul className="flex space-x-2">
             <li className="text-white cursor-pointer hover:underline">Cart</li>

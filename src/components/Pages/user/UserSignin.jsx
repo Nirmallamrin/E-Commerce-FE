@@ -5,8 +5,8 @@ import * as yup from "yup"
 import { Link } from "react-router-dom"
 
 
-const userSchema = yup.object ({
-    userName:yup.string().required(),
+const schema = yup.object ({
+    
     email: yup.string().email(),
     password: yup.string().min(6),
 });
@@ -18,7 +18,7 @@ export default function UserSignin() {
     
     formState: { errors },
   } = useForm({
-    resolver : yupResolver(userSchema),
+    resolver : yupResolver(schema),
   })
 
   const onSubmit = async (data) => {
@@ -26,7 +26,7 @@ export default function UserSignin() {
     try {
       await axios.post("http://localhost:3000/api/v1/users/signin" , data)
     } catch (error) {
-      console.log(error)
+      console.error("Error occurred while signing in:", error);
     }
     
     
@@ -54,11 +54,11 @@ export default function UserSignin() {
         />
         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
 
-        <input type="submit" className="rounded-md bg-black p-2 text-white cursor-pointer" value="Sign Up" />
+        <input type="submit" className="rounded-md bg-black p-2 text-white cursor-pointer" value="Sign in" />
 
         <p className="mt-4">
-          Create New
-          <Link to="/admin/signup" className="ml-2 rounded-md bg-slate-200 py-1 px-2 text-gray-600">
+          Create New {" "}
+          <Link to="/users/signup" className="ml-2 rounded-md bg-slate-200 py-1 px-2 text-gray-600">
             Signup
           </Link>
         </p>
