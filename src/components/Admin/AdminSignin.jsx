@@ -24,16 +24,19 @@ export default function AdminSignin() {
   const onSubmit = async (data) => {
 
     try {
-      await axios.post("http://localhost:3000/api/v1/admin/signin" , data)
+      const res = await axios.post("http://localhost:3000/api/v1/admin/signin",
+      data,
+      {
+        withCredentials: true,       
+      },
+    );
+    console.log(res.data)
     } catch (error) {
       console.log(error)
     }
     
     
   };
-
-  
-
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">

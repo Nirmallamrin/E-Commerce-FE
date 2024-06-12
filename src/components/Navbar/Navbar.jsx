@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <ul className="flex space-x-2">
-            <Link to='/users/signin'>
+            <Link to=''>
             <li className="text-white cursor-pointer hover:underline">Login</li>
             </Link>
           </ul>

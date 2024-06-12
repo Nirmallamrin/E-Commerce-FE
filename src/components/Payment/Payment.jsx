@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const product = () => {
+const Payment = () => {
 
   const handlePayment = async(e) => {
     
@@ -93,4 +93,4 @@ const product = () => {
   )
 }
 
-export default product
+export default Payment

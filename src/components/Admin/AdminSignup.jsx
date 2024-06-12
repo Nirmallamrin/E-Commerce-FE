@@ -22,7 +22,15 @@ export default function AdminSignup() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:3000/api/v1/admin/signup", data);
+      const res = await axios.post(
+        "http://localhost:3000/api/v1/admin/signup",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res.data);
+
     } catch (error) {
       console.log(error);
     }
@@ -68,9 +76,8 @@ export default function AdminSignup() {
           value="Sign Up"
         />
 
-
         <p className="mt-4">
-          User already exists?
+          Admin already exists?
           <Link
             to="/admin/signin"
             className="ml-2 rounded-md bg-slate-200 py-1 px-2 text-gray-600"
