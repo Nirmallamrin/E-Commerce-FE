@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const adminSchema = yup.object({
   userName: yup.string().required(),
@@ -11,6 +12,8 @@ const adminSchema = yup.object({
 });
 
 export default function AdminSignup() {
+
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -29,7 +32,9 @@ export default function AdminSignup() {
           withCredentials: true,
         }
       );
+      
       console.log(res.data);
+      navigate('/admin')
 
     } catch (error) {
       console.log(error);

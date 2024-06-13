@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 const schema = yup.object ({
@@ -12,6 +13,8 @@ const schema = yup.object ({
 });
 
 export default function UserSignin() {
+
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -24,7 +27,13 @@ export default function UserSignin() {
   const onSubmit = async (data) => {
 
     try {
-      await axios.post("http://localhost:3000/api/v1/users/signin" , data)
+      const res = await axios.post("http://localhost:3000/api/v1/users/signin" ,
+      data,
+      {
+        withCredentials: true,
+      })
+      console.log(res.data)
+      navigate("/")
     } catch (error) {
       console.error("Error occurred while signing in:", error);
     }
