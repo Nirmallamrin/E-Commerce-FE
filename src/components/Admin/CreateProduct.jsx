@@ -71,19 +71,14 @@ const CreateProduct = () => {
             Select a Category
           </option>
           <option value="Men">Men</option>
-          <option value="Men">Women</option>
-          <option value="Men">kids</option>
-          <option value="Men">Mobiles</option>
-          <option value="Men">Eletronics</option>
-          <option value="Men">Home & Kitchen</option>
-          <option value="Men">Beauty Products</option>
-          <option value="Men">Appliances</option>
+          <option value="Women">Women</option>
+          <option value="Kids">kids</option>
+          <option value="Mobiles">Mobiles</option>
+          <option value="Electronics">Electronics</option>
+          <option value="HomeandKitchen">Home & Kitchen</option>
+          <option value="Beauty">Beauty Products</option>
+          <option value="Appliances">Appliances</option>
         </select>
-        {/* <input
-          type="submit"
-          placeholder="Ada Product"
-          className="rounded-md bg-blue-500 p-1 text-white"
-        /> */}
         <button  className="rounded-md bg-blue-500 p-1 text-white">
         Add Product
         </button>

@@ -11,7 +11,7 @@ const CategoryProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/product/products?category=${categoryName}`)
+                const res = await axios.get(`http://localhost:3000/api/v1/product/products/getcategoryofproducts?category=${categoryName}`)
                 console.log(res.data)
                 setProducts(res.data)
             } catch (error) {
@@ -25,8 +25,8 @@ const CategoryProducts = () => {
     <h1 className="text-center text-2xl font-bold my-6">{categoryName} Products</h1>
     <div className="flex flex-wrap justify-center gap-4">
       {products.map((product) => (
-        <div className="flex-grow-0 flex-shrink-0 p-2">
-        <ProductCard key={product._id} product={product} />
+        <div key={product._id} className="flex-grow-0 flex-shrink-0 p-2">
+        <ProductCard  product={product} />
         </div>
       ))}
     </div>

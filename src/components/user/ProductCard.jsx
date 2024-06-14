@@ -13,10 +13,11 @@ import {
 } from "@chakra-ui/react";
 
 
-const ProductCard = ({ product }) => {
-  
-  return (
+
+const ProductCard = ({product}) => {  
+  return (        
             <Card maxW="sm" >
+              
               <CardBody>
                 <Image
                   objectFit="cover"
@@ -45,6 +46,7 @@ const ProductCard = ({ product }) => {
                   </Button>
                 </ButtonGroup>
               </CardFooter>
+              
             </Card>
          
   );

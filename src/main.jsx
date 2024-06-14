@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     path: "/",
     element:<UserLayout/>,
     children: [
-         
+        
       {
         path:"category/:categoryName",
         element:<CategoryProducts/>,
@@ -33,8 +33,7 @@ const router = createBrowserRouter([
         path:"productcard",
         element:<ProductCard/>,
       },
-      
-      
+            
     ]
   },
   {
@@ -44,6 +43,10 @@ const router = createBrowserRouter([
   {
     path:"users/signup",
     element:<UserSignup/>
+  },
+  {
+    path:"categories",
+    element:<Categories/>,
   },
   {
     path:"categories",

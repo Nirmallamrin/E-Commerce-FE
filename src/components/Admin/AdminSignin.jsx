@@ -33,7 +33,7 @@ export default function AdminSignin() {
 
       console.log(res.data);
 
-      navigate("/admin/dashboard");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     }
