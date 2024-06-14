@@ -10,13 +10,13 @@ import {
 import UserLayout from './components/Layout/UserLayout.jsx';
 import UserSignin from './components/user/UserSignin.jsx';
 import UserSignup from './components/user/UserSignup.jsx';
-import Categories from './components/Layout/Categories.jsx';
 import ProductCard from './components/user/ProductCard.jsx';
 import AdminSignin from './components/Admin/AdminSignin.jsx'
 import AdminSignup from './components/Admin/AdminSignup.jsx'
 import AdminLayout from './components/Layout/AdminLayout.jsx';
 import CreateProduct from './components/Admin/CreateProduct.jsx';
 import CategoryProducts from './components/user/CategoryProducts.jsx';
+import Categories from './components/user/Categories.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +26,14 @@ const router = createBrowserRouter([
          
       {
         path:"category/:categoryName",
-        element:<CategoryProducts/>
+        element:<CategoryProducts/>,
+
       },
+      {
+        path:"productcard",
+        element:<ProductCard/>,
+      },
+      
       
     ]
   },
@@ -43,16 +49,9 @@ const router = createBrowserRouter([
     path:"categories",
     element:<Categories/>,
   },
-  
+
   {
-    path:"productcard",
-    element:<ProductCard/>,
-  },
-  
-  
-  
-  {
-    path:"/admin/dashboard",
+    path:"/admin",
     element:<AdminLayout/>,  
     children: [
     {

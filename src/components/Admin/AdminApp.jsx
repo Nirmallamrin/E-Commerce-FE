@@ -10,7 +10,7 @@ const AdminApp = () => {
             <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap">
             <ul className="flex  space-x-4">
                 <li className="text-3xl font-bold mb-6">
-                    <h1>Admin Dashboard</h1>
+                    <h1><Link to="/admin">Admin Dashboard</Link></h1>
                 </li>
                 <li>
                    <Link to="manageproducts">Manage Products</Link>

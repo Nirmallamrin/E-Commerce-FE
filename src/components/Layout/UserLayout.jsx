@@ -1,11 +1,13 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
-import Categories from './Categories';
+import Categories from '../user/Categories';
 import { Outlet } from 'react-router-dom';
-import CategoryProducts from '../user/CategoryProducts';
+import { ChakraProvider } from '@chakra-ui/react';
+
 
 const UserLayout = () => {
   return (
+    <ChakraProvider>
     <div>
       <nav>
         <Navbar />
@@ -17,7 +19,7 @@ const UserLayout = () => {
       <Outlet/>
       
     </div>
-
+    </ChakraProvider>
   )
 }
 
