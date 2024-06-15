@@ -14,17 +14,19 @@ import {
 
 
 
+
 const ProductCard = ({product}) => {  
   return (        
-            <Card maxW="sm" >
+            <Card maxW="sm" className="w-64">
               
               <CardBody>
                 <Image
-                  objectFit="cover"
+                 
                   maxW={{ base: "100%", sm: "200px" }}
                   src={product.image.url}
                   alt={product.title}
                   borderRadius="lg"
+                  className="w-full h-48 object-cover"
                 />
                 <Stack mt="6" spacing="3">
                   <Heading size="md">{product.title}</Heading>
