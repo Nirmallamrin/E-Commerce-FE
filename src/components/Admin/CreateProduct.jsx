@@ -9,6 +9,7 @@ const schema = yup
     title: yup.string().required(),
     price: yup.string().required(),
     image: yup.mixed().required(),
+    description:yup.mixed().required(),
     category: yup.string().required(),
   })
   .required();
@@ -26,6 +27,7 @@ const CreateProduct = () => {
       price: data.price,
       image: data.image[0],
       category:data.category,
+      description:data.description
     };
 
     try {
@@ -58,6 +60,10 @@ const CreateProduct = () => {
 
         <input {...register("price")} type="text" placeholder="price" />
         {errors.title && <p>{errors.price.message}</p>}
+        
+        <input {...register("description")} type="text" placeholder="description" />
+        {errors.image && <p>{errors.image.message}</p>}
+
         <input {...register("image")} type="file" />
         {errors.image && <p>{errors.image.message}</p>}
      
