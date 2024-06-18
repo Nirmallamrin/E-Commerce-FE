@@ -38,9 +38,7 @@ const ProductCard = ({product}) => {
                 </Stack>
               </CardBody>
               <Divider />
-              <Text>
-                {product.description}
-              </Text>
+              
               
             </Card>
          
