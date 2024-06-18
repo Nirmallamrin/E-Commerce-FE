@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import {
   createBrowserRouter,
@@ -17,6 +16,8 @@ import AdminLayout from './components/Layout/AdminLayout.jsx';
 import CreateProduct from './components/Admin/CreateProduct.jsx';
 import CategoryProducts from './components/user/CategoryProducts.jsx';
 import Categories from './components/user/Categories.jsx';
+import AllProducts from './components/Admin/AllProducts.jsx';
+import ManageProducts from './components/Admin/ManageProducts.jsx';
 
 const router = createBrowserRouter([
   {
@@ -67,11 +68,23 @@ const router = createBrowserRouter([
     },
     {
       path:'manageproducts',
-      element:<CreateProduct/>
+      element:<ManageProducts/>,
+      children: [
+        
+          {
+            path:'all',
+            element:<AllProducts />
+          },
+          {
+            path:"new",
+            element:<CreateProduct/>
+          },
+        
+      ],
     },
   ]
   },
-])
+]);
 
 
 
@@ -80,7 +93,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 
-  // <BrowserRouter>
-  //   <App />
-  // </BrowserRouter>
+  
+
 );

@@ -1,17 +1,18 @@
-import React from 'react'
-import AdminApp from '../Admin/AdminApp'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import AdminApp from "../Admin/AdminApp";
+import { Outlet } from "react-router-dom";
 
 
 const AdminLayout = () => {
   return (
     <div>
-   <nav>
+      <nav>
         <AdminApp />
-   </nav>
-   <Outlet/>
-   </div>
-  )
-}
+      </nav>      
+      <Outlet /> 
+      
+    </div>
+  );
+};
 
-export default AdminLayout
+export default AdminLayout;

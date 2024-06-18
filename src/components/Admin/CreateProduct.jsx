@@ -7,7 +7,6 @@ import axios from "axios";
 const schema = yup
   .object({
     title: yup.string().required(),
-    description: yup.string().required(),
     price: yup.string().required(),
     image: yup.mixed().required(),
     category: yup.string().required(),
@@ -24,12 +23,11 @@ const CreateProduct = () => {
   const onSubmit = async (data) => {
     const requestBody = {
       title: data.title,
-      description: data.description,
       price: data.price,
       image: data.image[0],
       category:data.category,
-
     };
+
     try {
       const res = await axios.post(
         "http://localhost:3000/api/v1/product/admin/products/new",
@@ -44,30 +42,27 @@ const CreateProduct = () => {
       alert("Successfully Added")
       console.log(res.data);
     } catch (error) {
-      console.log(error);
+      console.error('There was an error creating the product!', error);
+      alert('Failed to add product');
     }
   };
-
+  
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-2 rounded-md border p-6"
-      >
+        className="flex flex-col gap-y-2 rounded-md border p-6">
+      
         <input {...register("title")} type="text" placeholder="title" />
-         
-        <input
-          {...register("description")}
-          type="text"
-          placeholder="description"
-        />
+        {errors.title && <p>{errors.title.message}</p>}
 
         <input {...register("price")} type="text" placeholder="price" />
-
+        {errors.title && <p>{errors.price.message}</p>}
         <input {...register("image")} type="file" />
-
-        <select {...register("category")}>
-          <option value="" disabled selected>
+        {errors.image && <p>{errors.image.message}</p>}
+     
+        <select {...register("category")} defaultValue="">
+          <option value="" disabled>
             Select a Category
           </option>
           <option value="Men">Men</option>
@@ -80,7 +75,7 @@ const CreateProduct = () => {
           <option value="Appliances">Appliances</option>
         </select>
         <button  className="rounded-md bg-blue-500 p-1 text-white">
-        Add Product
+        Create New
         </button>
       </form>
     </div>
