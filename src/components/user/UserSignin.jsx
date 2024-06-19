@@ -42,8 +42,6 @@ export default function UserSignin() {
   };
 
   
-
-
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 rounded-md border p-6 bg-white shadow-lg">

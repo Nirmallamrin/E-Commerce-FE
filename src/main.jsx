@@ -18,6 +18,7 @@ import CategoryProducts from './components/user/CategoryProducts.jsx';
 import Categories from './components/user/Categories.jsx';
 import AllProducts from './components/Admin/AllProducts.jsx';
 import ManageProducts from './components/Admin/ManageProducts.jsx';
+import SingleProduct from './components/user/SingleProduct.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
         path:"productcard",
         element:<ProductCard/>,
       },
-            
+      {
+        path:"product/:id",
+        element:<SingleProduct/>,
+      },
+           
     ]
   },
   {

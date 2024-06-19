@@ -5,21 +5,25 @@ import {
   CardFooter,
   Stack,
   Heading,
-  Divider,
   ButtonGroup,
   Button,
   Image,
   Text
 } from "@chakra-ui/react";
-
-
+import { useNavigate } from 'react-router-dom';
 
 
 const ProductCard = ({product}) => {  
+
+  const navigate = useNavigate();
+
+  const handleViewClick = ()=> {   
+      navigate(`/product/${product._id}`);
+  }    
   return (
     <Card maxW="sm" className="w-64">
       <CardBody>
-        <Image
+        <Image          
           maxW={{ base: "100%", sm: "200px" }}
           src={product.image.url}
           alt={product.title}
@@ -29,22 +33,22 @@ const ProductCard = ({product}) => {
         <Stack mt="6" spacing="3">
           <Heading size="md">{product.title}</Heading>
 
-          <Text color="blue.600" fontSize="">
+          <Text color="black" >
             INR {product.price}
           </Text>
         </Stack>
       </CardBody>
-      <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
-          </Button>
-          <Button variant="ghost" colorScheme="blue">
-            Add to cart
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
+    <ButtonGroup spacing='2'>
+      <Button variant='solid' colorScheme='blue' onClick={handleViewClick}>
+        View
+      </Button>
+      <Button variant='ghost' colorScheme='blue' >
+        Add to cart
+      </Button>
+    </ButtonGroup>
+  </CardFooter>
+      
     </Card>
   );
 };
