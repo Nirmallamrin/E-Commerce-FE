@@ -45,7 +45,7 @@ const SingleProduct = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <Card
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"

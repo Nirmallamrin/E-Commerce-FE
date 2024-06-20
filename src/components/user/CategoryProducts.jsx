@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from './ProductCard';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CategoryProducts = () => {
     const {categoryName } = useParams();
     const [products, setProducts] = useState([])
-
+    
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -20,6 +21,8 @@ const CategoryProducts = () => {
         };
         fetchProducts();
     },[categoryName])
+
+
   return (
     <div className="container mx-auto p-4">
     <h1 className="text-center text-2xl font-bold my-6">{categoryName} Products</h1>

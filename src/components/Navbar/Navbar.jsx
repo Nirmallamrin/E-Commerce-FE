@@ -19,8 +19,12 @@ import {
 import { SearchIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../contexts/AuthContexts";
 
 const Navbar = () => {
+  const tokenRelease = ( )=> {
+    sessionStorage.removeItem('userToken')
+}
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -57,9 +61,11 @@ const Navbar = () => {
             </Link>
           </ul>
           <ul className="flex space-x-2">
+            <Link to="cart">
             <li className="text-slate-950  cursor-pointer hover:underline">
               Cart
             </li>
+            </Link>
           </ul>
         </div>
         <Menu >
@@ -70,17 +76,10 @@ const Navbar = () => {
             variant="outline"
           />
           <MenuList className="bg-white ">
-            <MenuItem  >
-              New Tab
-            </MenuItem>
-            <MenuItem  >
-              New Window
-            </MenuItem>
-            <MenuItem >
-              Open Closed Tab
-            </MenuItem>
-            <MenuItem >
-              Open File...
+            
+            
+            <MenuItem onClick={tokenRelease}>
+              Logout
             </MenuItem>
           </MenuList>
         </Menu>

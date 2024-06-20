@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-
+import { FiDelete } from "react-icons/fi";
 
 const userSchema = yup.object ({
     userName:yup.string().required(),
@@ -33,9 +33,9 @@ export default function UserSignup() {
         withCredentials: true,
       },
     )
-
-      console.log(res.data)
-      navigate("/")
+    sessionStorage.setItem('userToken', res.data.token);
+    console.log(res.data)
+    navigate("/")
     } catch (error) {
       console.log(error)
     }       
@@ -44,6 +44,12 @@ export default function UserSignup() {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 rounded-md border p-6 bg-white shadow-lg">
+      <div className="flex justify-end">
+          <Link to="/">
+          <FiDelete className="text-2xl cursor-pointer font-bold"/> 
+          </Link> 
+        </div>
+        <h2 className="text-2xl font-bold text-center mb-4">Create Account</h2>
         <input
           {...register("userName")}
           placeholder="Enter your username"
