@@ -8,8 +8,8 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <h2>Cart</h2>
+    <div className="mt-5">
+      <h2 className="text-xl font-bold flex justify-center " >Continue Shopping</h2>
       {cart.map((item) => (
        
         <Card

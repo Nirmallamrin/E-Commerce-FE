@@ -4,8 +4,8 @@ import { faFacebookSquare, faTwitter, faInstagram } from '@fortawesome/free-bran
 
 const Footer = () => {
   return (
-    <footer className="bg-cyan-300 text-black py-6">
-      <div className="container mx-auto px-4">
+    <footer className="bg-black text-white py-12 ">
+      <div className="container mx-auto px-12">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0 text-center md:text-left">
             <p className="text-sm">Shopy &copy; {new Date().getFullYear()}</p>

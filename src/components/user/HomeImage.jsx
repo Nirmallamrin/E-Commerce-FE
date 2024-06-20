@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from "../assets/image2.jpg";
+import ImageTwo from "../assets/image3.jpg"
 
 const HomeImage = () => {
   return (
     <div>
-        <div>
+        <div className="gap-3">
       
       <img
         src={Image} 
@@ -12,6 +13,7 @@ const HomeImage = () => {
        
         style={{ cursor: 'pointer' }} 
       />
+    
       
     </div> 
     </div>

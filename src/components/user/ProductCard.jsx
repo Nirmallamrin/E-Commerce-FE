@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import { addToCart } from "../../redux/actions/CartActions";
 import { toast } from "react-toastify";
+import { FaIndianRupeeSign } from "react-icons/fa6";
 
 const ProductCard = ({product}) => {  
 
@@ -33,7 +34,7 @@ const ProductCard = ({product}) => {
       return;
     }
     dispatch(addToCart(product))
-    alert("added to cart")
+    toast.success("Product added to cart!");
   }
 
   return (
@@ -48,10 +49,12 @@ const ProductCard = ({product}) => {
         />
         <Stack mt="6" spacing="3">
           <Heading size="md">{product.title}</Heading>
-
-          <Text color="black" >
-            INR {product.price}
+          <Text color="black " >
+             {product.description}
           </Text>
+          <Text py="2" className="flex items-center">
+            <FaIndianRupeeSign className="mr-0"/>{product.price} 
+            </Text>
         </Stack>
       </CardBody>
       <CardFooter>
