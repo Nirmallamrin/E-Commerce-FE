@@ -12,9 +12,10 @@ const CategoryProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/product/products/getcategoryofproducts?category=${categoryName}`)
+                const res = await axios.get(`http://localhost:3000/api/v1/product/products/getcategoryofproducts?category=${categoryName}`);
+                const data = await res.data
                 console.log(res.data)
-                setProducts(res.data)
+                setProducts(data)
             } catch (error) {
                console.log("Error in fetching products", error) 
             }
