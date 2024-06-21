@@ -5,6 +5,7 @@ import * as yup from "yup"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { FiDelete } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const userSchema = yup.object ({
     userName:yup.string().required(),
@@ -31,13 +32,18 @@ export default function UserSignup() {
        data,
       {
         withCredentials: true,
-      },
-    )
-    sessionStorage.setItem('userToken', res.data.token);
-    console.log(res.data)
-    navigate("/")
+      });
+      if(res.data.message === "Signed Successfully!"){
+      
+       sessionStorage.setItem('userToken', res.data.token);
+       console.log(res.data)
+       toast.success("Successfully signed in");
+       navigate("/")
+      }else{
+        toast.error("Password is not correct");
+      }
     } catch (error) {
-      console.log(error)
+      console.error("Error occurred while signing in:", error);
     }       
   };
  

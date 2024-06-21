@@ -90,10 +90,10 @@ const SingleProduct = () => {
     <>
       <div className="flex justify-center items-center p-4 bg-gray-100">
         <Card
-          direction={{ base: "column", sm: "row" }}
+          direction={{ base: "column", md: "row" }}
           overflow="hidden"
           variant="outline"
-          className="w-full max-w-screen-lg"
+          className="w-full max-w-screen-lg rounded-lg shadow-lg bg-white"
         >
           <Image
             objectFit="cover"
@@ -101,7 +101,7 @@ const SingleProduct = () => {
             src={product.image.url}
             alt={product.title}
           />
-          <Stack>
+          <Stack spacing={4} p={4} className="flex flex-col justify-between">
             <CardBody>
               <Heading size="md">{product.title}</Heading>
 
@@ -128,6 +128,7 @@ const SingleProduct = () => {
                 variant="solid"
                 colorScheme="blue"
                 onClick={handleAddToCart}
+                className="px-4 py-2"
               >
                 Add to Cart
               </Button>
@@ -136,11 +137,11 @@ const SingleProduct = () => {
         </Card>
       </div>
       <div className="p-4">
-        <h2 className="flex justify-center text-2xl font-semibold ">
+        <h2 className="flex justify-center text-2xl font-semibold mb-4">
           Product Details
         </h2>
         <div className="flex justify-center">
-          <ul className="list-disc list-inside text-center">
+          <ul className="list-disc list-inside text-center text-gray-700">
             <li className="mt-1">Lorem ipsum</li>
             <li className="mt-1">Lorem ipsum</li>
             <li className="mt-1">Lorem ipsum</li>
@@ -149,7 +150,15 @@ const SingleProduct = () => {
             <li className="mt-1">Lorem ipsum</li>
           </ul>
         </div>
-        <p className=" mt-4 container flex justify-center items-center px-12 bg-gray-100">
+        <p className=" mt-4 container mx-auto text-center text-gray-700">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+          ratione accusamus omnis iste facere? Corporis, earum cupiditate
+          quaerat amet laborum, doloremque nostrum similique provident officia
+          incidunt repudiandae aliquam temporibus debitis. Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Voluptas ratione accusamus omnis
+          iste facere? Corporis, earum cupiditate quaerat amet laborum,
+          doloremque nostrum similique provident officia incidunt repudiandae
+          aliquam temporibus debitis.
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
           ratione accusamus omnis iste facere? Corporis, earum cupiditate
           quaerat amet laborum, doloremque nostrum similique provident officia
@@ -160,8 +169,8 @@ const SingleProduct = () => {
           aliquam temporibus debitis.
         </p>
       </div>
-      <div className="flex flex-col items-center m-7">
-        <h2 className="text-2xl">Riview the Product</h2>
+      <div className ="flex flex-col items-center m-7">
+        <h2 className ="text-2xl">Riview the Product</h2>
         <form onSubmit={handleReviewSubmit} className="mt-4">
           <FormControl id="name">
             <FormLabel>Name</FormLabel>

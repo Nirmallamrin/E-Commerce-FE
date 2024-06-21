@@ -1,23 +1,21 @@
-import React from 'react'
+import React from "react";
 import Image from "../assets/image2.jpg";
-import ImageTwo from "../assets/image3.jpg"
+import ImageTwo from "../assets/image4.jpg";
 
 const HomeImage = () => {
   return (
-    <div>
-        <div className="gap-3">
+    <div className="flex flex-col">
       
-      <img
-        src={Image} 
-        alt="Example Image"
-       
-        style={{ cursor: 'pointer' }} 
-      />
-    
+        <div className="m-4">
+        <img
+         src={Image}
+         alt="Example Image" 
+         style={{ cursor: "pointer"}} />
+         </div>
+  
       
-    </div> 
     </div>
-  )
-}
+  );
+};
 
-export default HomeImage
+export default HomeImage;
