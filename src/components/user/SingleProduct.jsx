@@ -79,6 +79,17 @@ const SingleProduct = () => {
     toast.success("Product added to cart!");
   };
 
+  const handleBuyNow = () => {
+    const token = sessionStorage.getItem("userToken");
+    if (!token) {
+      toast.error("You need to sign in first.");
+      navigate("/users/signin");
+      
+    }else {
+      navigate("/order", { state: { product } });
+    }
+  }
+
   const handleReviewSubmit = (e) => {
     e.preventDefault();
     setReviews([...reviews, newReview]);
@@ -121,7 +132,10 @@ const SingleProduct = () => {
               </span>
             </CardBody>
             <CardFooter className=" flex gap-2 justify-center">
-              <Button variant="solid" colorScheme="blue">
+              <Button 
+              variant="solid" 
+              colorScheme="blue"
+              onClick={handleBuyNow}>
                 Buy Now
               </Button>
               <Button

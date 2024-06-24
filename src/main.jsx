@@ -22,6 +22,10 @@ import Cart from "./components/user/Cart.jsx";
 import PrivateRoute from "./components/Routes/PrivateRoute.jsx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Order from "./components/user/Order.jsx";
+import Payment from "./components/user/Payment.jsx";
+import PaymentSuccess from "./components/user/PaymentSuccess.jsx";
+import UserOrders from "./components/user/UserOrders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +45,39 @@ const router = createBrowserRouter([
         element: <SingleProduct />,
       },
       {
+        path: "order",
+        element: (
+          <PrivateRoute>
+            <Order />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "orders",
+        element: (
+          <PrivateRoute>
+            <UserOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "success",
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess />
+          </PrivateRoute>
+        ),
+      },
+
+      {
         path: "cart",
         element: (
           <PrivateRoute>
@@ -50,6 +87,8 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+
   {
     path: "users/signin",
     element: <UserSignin />,
@@ -62,10 +101,7 @@ const router = createBrowserRouter([
     path: "categories",
     element: <Categories />,
   },
-  {
-    path: "categories",
-    element: <Categories />,
-  },
+
 
   {
     path: "/admin",

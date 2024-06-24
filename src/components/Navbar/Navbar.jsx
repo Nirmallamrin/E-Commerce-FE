@@ -72,6 +72,13 @@ const Navbar = () => {
               </li>
             </Link>
           </ul>
+          <ul className="flex space-x-2">
+            <Link to="orders">
+              <li className="text-slate-950  cursor-pointer hover:underline">
+                MyOrders
+              </li>
+            </Link>
+          </ul>
         </div>
         <Menu>
           <MenuButton
@@ -81,10 +88,9 @@ const Navbar = () => {
             variant="outline"
           />
           <MenuList className="bg-white">
-            <MenuItem onClick={tokenRelease}>Logout</MenuItem>
-            <MenuItem>CustomerCare</MenuItem>
-          </MenuList>
-          
+          <MenuItem>My Profile</MenuItem>
+            <MenuItem onClick={tokenRelease}>Logout</MenuItem>           
+          </MenuList>          
         </Menu>
       </div>
     </nav>
