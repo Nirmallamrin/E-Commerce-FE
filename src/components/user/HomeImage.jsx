@@ -29,7 +29,7 @@ const HomeImage = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full max-w-4xl mb-8">
+      <div className="w-full max-w-4xl mb-8 hidden sm:block" >
         <Slider {...settings}>
           <div>
             <img src={Banner3} alt="Example Image" className="w-full h-auto" />
