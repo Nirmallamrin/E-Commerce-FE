@@ -33,7 +33,7 @@ const AllProducts = () => {
       const getAllProducts = async () => {
         try {
           const res = await axios.get(
-            " http://localhost:3000/api/v1/product/products ",
+            " https://e-commerce-be-yi97.onrender.com/product/products ",
           );
           const data = await res.data;
           console.log("course", data);

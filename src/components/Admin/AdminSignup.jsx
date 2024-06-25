@@ -26,7 +26,7 @@ export default function AdminSignup() {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/admin/signup",
+        "https://e-commerce-be-yi97.onrender.com/admin/signup",
         data,
         {
           withCredentials: true,

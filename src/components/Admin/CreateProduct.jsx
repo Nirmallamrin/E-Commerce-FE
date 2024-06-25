@@ -32,7 +32,7 @@ const CreateProduct = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/product/admin/products/new",
+        "https://e-commerce-be-yi97.onrender.com/product/admin/products/new",
         requestBody,
         {
           withCredentials: true,

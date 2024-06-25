@@ -28,11 +28,7 @@ export default function UserSignin() {
   const onSubmit = async (data) => {
 
     try {
-      const res = await axios.post("https://e-commerce-be-yi97.onrender.com/users/signin" ,
-      data,
-      {
-        withCredentials: true,
-      });
+      const res = await axios.post("https://e-commerce-be-yi97.onrender.com/users/signin" ,data);
       if(res.data.message === "Logged in!"){
       sessionStorage.setItem('userToken', res.data.token);
       console.log(res.data)

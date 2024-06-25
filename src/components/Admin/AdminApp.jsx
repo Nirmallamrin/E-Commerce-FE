@@ -1,7 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
-import CreateProduct from './CreateProduct'
-import { Outlet } from 'react-router-dom'
 
 const AdminApp = () => {
   return (

@@ -28,10 +28,10 @@ export default function UserSignup() {
   const onSubmit = async (data) => {
 
     try {
-      const res = await axios.post("https://e-commerce-be-yi97.onrender.com/users/signup",data, 
-      {
-        withCredentials:true,
-      });
+      const res = await axios.post("https://e-commerce-be-yi97.onrender.com/users/signup", 
+        data);
+     
+      
       if(res.data.message === "Signed Successfully!"){
       
        sessionStorage.setItem('userToken', res.data.token);
