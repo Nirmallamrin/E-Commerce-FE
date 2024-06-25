@@ -55,8 +55,8 @@ const HomeImage = () => {
           </div>
         </Slider>
       </div>
-      <div className="m-4 w-full max-w-md">
-        <img src={Image} alt="Example Image" style={{ cursor: "pointer" }} className="w-full h-auto"/>
+      <div className="m-4 ">
+        <img src={Image} alt="Example Image" style={{ cursor: "pointer" }} />
       </div>
       <div className="flex flex-wrap justify-center">
         <div className="m-4 w-full sm:w-1/2 lg:w-1/4 max-w-xs">
