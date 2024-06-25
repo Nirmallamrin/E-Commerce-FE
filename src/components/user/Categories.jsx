@@ -41,13 +41,13 @@ const Categories = () => {
       
     ];
   return (
-    <div className="  p-4">
-      <ul className="flex justify-center space-x-4 md:justify-start">
+    <div className="  p-4 overflow-x-auto whitespace-nowrap">
+      <ul className="flex space-x-4 md:space-x-6 lg:space-x-8">
       
 
        {navCats.map((link, index) => (
                 <Link key={index} to={link.path}>
-                    <li className="text-slate-950 font-bold hover:text-gray-300 transition duration-300">{link.value}</li>
+                    <li className="text-slate-950 font-bold hover:text-gray-600 transition duration-300">{link.value}</li>
                 </Link>
             ))}
       </ul>
