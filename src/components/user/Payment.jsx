@@ -22,7 +22,7 @@ const Payment = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/v1/payment/createorder',
+        'https://e-commerce-be-yi97.onrender.com/payment/createorder',
         {
           amount: orderDetails.totalPrice,
           currency: 'INR',
@@ -54,7 +54,7 @@ const Payment = () => {
           console.log(response);
 
           const paymentVerificationResponse = await axios.post(
-            'http://localhost:3000/api/v1/payment/order/validate',
+            'https://e-commerce-be-yi97.onrender.com/payment/order/validate',
             {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
@@ -113,39 +113,29 @@ const Payment = () => {
   }
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
-      <h2 className='text-2xl font-semibold mb-4'>Payment Details</h2>
-      <div className='p-4'>
-      <h3>Order ID: {orderDetails._id}</h3>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h2 className="text-2xl font-semibold mb-4">Payment Details</h2>
+      <div className="p-4 bg-gray-100 rounded-lg shadow-md w-full max-w-screen-lg">
+        <h3 className="text-xl font-semibold">Order ID: {orderDetails._id}</h3>
         <div>
-          <h3>Delivery Address</h3>
-          <ul>
-            <li>
-              {orderDetails.shippingAddress.address},
-            </li>
-            <li>
-              {orderDetails.shippingAddress.city},
-            </li>
-            <li>
-              {orderDetails.shippingAddress.pincode},
-            </li>
-            <li>
-              {orderDetails.shippingAddress.country}.
-            </li>
-            <li>
-              PhoneNO:{orderDetails.shippingAddress.phonenumber}
-            </li>
-            <li>
-              Email:{orderDetails.shippingAddress.email}
-            </li>
+          <h3 className="text-lg font-semibold mt-2">Delivery Address</h3>
+          <ul className="list-disc pl-4">
+            <li>{orderDetails.shippingAddress.address},</li>
+            <li>{orderDetails.shippingAddress.city},</li>
+            <li>{orderDetails.shippingAddress.pincode},</li>
+            <li>{orderDetails.shippingAddress.country}.</li>
+            <li>PhoneNO:{orderDetails.shippingAddress.phonenumber}</li>
+            <li>Email:{orderDetails.shippingAddress.email}</li>
           </ul>
         </div>
-        <div className="">
-            <span>Delivery Charges</span>
-            <span>₹0 (Free)</span>
-          </div>
-        <h3>Total Price: ₹{orderDetails.totalPrice}</h3>
-        <button onClick={handlePayment}>Pay with Razorpay</button>
+        <div className="flex justify-between border-t border-gray-300 pt-4">
+          <span className='text-lg font-semibold'>Delivery Charges</span>
+          <span className='text-lg font-semibold'>₹0 (Free)</span>
+        </div>
+        <h3 className='text-2xl font-semibold mt-4'>Total Price: ₹{orderDetails.totalPrice}</h3>
+        <button onClick={handlePayment}
+        className='mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'>
+          Pay with Razorpay</button>
       </div>
     </div>
   );

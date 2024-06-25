@@ -12,7 +12,7 @@ const CategoryProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/product/products/getcategoryofproducts?category=${categoryName}`);
+                const res = await axios.get(`https://e-commerce-be-yi97.onrender.com/product/products/getcategoryofproducts?category=${categoryName}`);
                 const data = await res.data
                 console.log(res.data)
                 setProducts(data)

@@ -48,8 +48,9 @@ const Order = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/order/new",
+        "https://e-commerce-be-yi97.onrender.com/order/new",
         {
+
           orderItems: [
             {
               title: product.title,             
@@ -64,8 +65,13 @@ const Order = () => {
         },
 
         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           withCredentials: true,
         }
+        
+       
       );
       
 

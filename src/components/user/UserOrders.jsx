@@ -20,7 +20,7 @@ const UserOrders = () => {
                     return;
                 }
 
-                const res = await axios.get("http://localhost:3000/api/v1/order/myorders/me")
+                const res = await axios.get("https://e-commerce-be-yi97.onrender.com/order/myorders/me")
                 setOrders(res.data)
             } catch (error) {
                 console.error('Error fetching orders:', error);
