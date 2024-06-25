@@ -24,7 +24,7 @@ const Payment = () => {
       const response = await axios.post(
         'http://localhost:3000/api/v1/payment/createorder',
         {
-          amount: orderDetails.totalPrice * 100,
+          amount: orderDetails.totalPrice,
           currency: 'INR',
           receipt: `order_rcptid_${orderDetails._id}`,
           notes: ['This is a test note'],

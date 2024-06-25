@@ -77,7 +77,7 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-        <div className=" flex items-center">
+        <div className="flex items-center">
           <Menu>
             <MenuButton
               as={IconButton}
