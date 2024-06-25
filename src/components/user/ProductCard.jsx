@@ -42,18 +42,18 @@ const ProductCard = ({product}) => {
       <CardBody>
         <Image          
           maxW={{ base: "100%", sm: "200px" }}
-          src={product.image.url}
-          alt={product.title}
+          src={product.image?.url || '/path/to/default-image.jpg'}
+          alt={product.title || 'Product Image'}
           borderRadius="lg"
           className="w-full h-48 object-cover"
         />
         <Stack mt="6" spacing="3">
           <Heading size="md">{product.title}</Heading>
           <Text color="black " >
-             {product.description}
+             {product.description || 'No description available'}
           </Text>
           <Text py="2" className="flex items-center">
-            <FaIndianRupeeSign className="mr-0"/>{product.price} 
+            <FaIndianRupeeSign className="mr-0"/>{product.price ? product.price : 'N/A'} 
             </Text>
         </Stack>
       </CardBody>
