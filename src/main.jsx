@@ -26,6 +26,7 @@ import Order from "./components/user/Order.jsx";
 import Payment from "./components/user/Payment.jsx";
 import PaymentSuccess from "./components/user/PaymentSuccess.jsx";
 import UserOrders from "./components/user/UserOrders.jsx";
+import AboutUsContactUs from "./components/Pages/AboutContactUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,11 @@ const router = createBrowserRouter([
     path: "categories",
     element: <Categories />,
   },
+  {
+    path: "/about-contact",
+    element: <AboutUsContactUs />,
+  },
+
 
   {
     path: "/admin",
@@ -136,7 +142,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} />  
         <ToastContainer />
       </AuthProvider>
     </Provider>

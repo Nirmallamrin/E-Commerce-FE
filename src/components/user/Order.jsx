@@ -17,16 +17,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 
-
 const Order = () => {
-  
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const location = useLocation();
   const { product } = location.state || {};
   const [shippingAddress, setShippingAddress] = useState({
-    email:"",
-    phonenumber:"",
+    email: "",
+    phonenumber: "",
     address: "",
     city: "",
     pincode: "",
@@ -39,11 +37,12 @@ const Order = () => {
   };
 
   const handleOrder = async () => {
-    const token = sessionStorage.getItem('userToken');
+    const token = sessionStorage.getItem("userToken");
     console.log("Retrieved token:", token);
+    
     if (!token) {
       toast.error("Please sign in to place an order.");
-      navigate('/users/signin');
+      navigate("/users/signin");
       return;
     }
 
@@ -54,7 +53,7 @@ const Order = () => {
           shippingAddress,
           orderItems: [
             {
-              title: product.title,             
+              title: product.title,
               image: product.image.url,
               price: product.price,
               product: product._id,
@@ -63,13 +62,16 @@ const Order = () => {
           paymentMethod: "Credit Card",
           totalPrice: product.price,
         },
- 
-
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      
+
       if (res.status === 201) {
         toast.success("Order created successfully!");
-        navigate("/payment",{state: {orderDetails: res.data}})
+        navigate("/payment", { state: { orderDetails: res.data } });
       } else {
         toast.error("Failed to create order. Please try again.");
       }
@@ -82,7 +84,6 @@ const Order = () => {
   if (!product) {
     return <div>No product information available.</div>;
   }
-
 
   return (
     <>
@@ -109,23 +110,22 @@ const Order = () => {
                 <FaIndianRupeeSign className="mr-0" />
                 {product.price}
               </Text>
-              
-                <div className="flex items-center">
+
+              <div className="flex items-center">
                 <div className="flex gap-2 bg-blue-200 p-1 rounded-md">
                   <h5>Qty</h5>
                   <button className="font-bold ">-</button>
                   <p>1</p>
                   <button className="font-bold ">+</button>
                 </div>
-                </div>
-              
+              </div>
             </CardBody>
           </Stack>
         </Card>
       </div>
       <div className="p-4">
         <h2 className="text-2xl font-semibold mb-4">Delivery Address</h2>
-        
+
         <FormControl>
           <FormLabel>Phone No</FormLabel>
           <Input
@@ -135,14 +135,14 @@ const Order = () => {
             onChange={handleInputChange}
           />
           <FormControl>
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            name="email"
-            value={shippingAddress.email}
-            onChange={handleInputChange}
-          />
-        </FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              value={shippingAddress.email}
+              onChange={handleInputChange}
+            />
+          </FormControl>
           <FormLabel>Address</FormLabel>
           <Input
             type="text"

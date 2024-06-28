@@ -32,7 +32,7 @@ const HomeImage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center cursor-pointer">
       <div className="w-full max-w-4xl mb-8 hidden sm:block" >
         <Slider {...settings}>
           <div>

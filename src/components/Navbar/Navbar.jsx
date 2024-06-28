@@ -5,6 +5,7 @@ import {
   MenuList,
   MenuItem,
   IconButton,
+  
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { SearchIcon, ShoppingCartIcon } from "@heroicons/react/solid";
@@ -98,6 +99,8 @@ const Navbar = () => {
                 </MenuItem>
               </div>
               <MenuItem>My Profile</MenuItem>
+              <MenuItem>Report Us</MenuItem>
+              <MenuItem>Customer Service</MenuItem>
               <MenuItem onClick={tokenRelease}>Logout</MenuItem>
             </MenuList>
           </Menu>
