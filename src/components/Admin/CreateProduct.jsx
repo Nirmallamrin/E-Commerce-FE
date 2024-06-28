@@ -30,19 +30,21 @@ const CreateProduct = () => {
       description:data.description
     };
 
+    const token = sessionStorage.getItem("userToken");
+    if (!token) {
+      alert("You need to sign in first.");
+      return;
+    }
+
     try {
       const res = await axios.post(
         "https://e-commerce-be-yi97.onrender.com/product/admin/products/new",
         requestBody,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+
+ 
       );
       alert("Successfully Added")
-      console.log(res.data);
+      
     } catch (error) {
       console.error('There was an error creating the product!', error);
       alert('Failed to add product');

@@ -20,8 +20,8 @@ import ManageProducts from "./components/Admin/ManageProducts.jsx";
 import SingleProduct from "./components/user/SingleProduct.jsx";
 import Cart from "./components/user/Cart.jsx";
 import PrivateRoute from "./components/Routes/PrivateRoute.jsx";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Order from "./components/user/Order.jsx";
 import Payment from "./components/user/Payment.jsx";
 import PaymentSuccess from "./components/user/PaymentSuccess.jsx";
@@ -50,6 +50,7 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Order />
           </PrivateRoute>
+          
         ),
       },
       {
@@ -88,7 +89,6 @@ const router = createBrowserRouter([
     ],
   },
 
-
   {
     path: "users/signin",
     element: <UserSignin />,
@@ -101,7 +101,6 @@ const router = createBrowserRouter([
     path: "categories",
     element: <Categories />,
   },
-
 
   {
     path: "/admin",

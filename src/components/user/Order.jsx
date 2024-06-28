@@ -39,10 +39,11 @@ const Order = () => {
   };
 
   const handleOrder = async () => {
-    const token = sessionStorage.getItem("userToken");
+    const token = sessionStorage.getItem('userToken');
+    console.log("Retrieved token:", token);
     if (!token) {
-      toast.error("You need to sign in first.");
-      navigate("/users/signin");
+      toast.error("Please sign in to place an order.");
+      navigate('/users/signin');
       return;
     }
 
@@ -50,7 +51,7 @@ const Order = () => {
       const res = await axios.post(
         "https://e-commerce-be-yi97.onrender.com/order/new",
         {
-
+          shippingAddress,
           orderItems: [
             {
               title: product.title,             
@@ -59,22 +60,13 @@ const Order = () => {
               product: product._id,
             },
           ],
-          shippingAddress,
           paymentMethod: "Credit Card",
           totalPrice: product.price,
         },
+ 
 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-        
-       
       );
       
-
       if (res.status === 201) {
         toast.success("Order created successfully!");
         navigate("/payment",{state: {orderDetails: res.data}})
@@ -90,6 +82,7 @@ const Order = () => {
   if (!product) {
     return <div>No product information available.</div>;
   }
+
 
   return (
     <>

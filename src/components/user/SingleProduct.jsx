@@ -14,7 +14,6 @@ import {
   Textarea
 } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/CartActions";
@@ -81,6 +80,7 @@ const SingleProduct = () => {
 
   const handleBuyNow = () => {
     const token = sessionStorage.getItem("userToken");
+    console.log("Retrieved token:", token);
     if (!token) {
       toast.error("You need to sign in first.");
       navigate("/users/signin");

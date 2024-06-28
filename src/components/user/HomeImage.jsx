@@ -13,6 +13,10 @@ import Banner3 from "../assets/banner3.jpg";
 import Banner4 from "../assets/banner4.jpg";
 import Banner5 from "../assets/banner5.jpg";
 import Banner6 from "../assets/banner6.jpg";
+import Banner7 from "../assets/banner7.jpg";
+import Banner8 from "../assets/banner8.jpg";
+import Banner9 from "../assets/banner9.jpg";
+import Banner10 from "../assets/banner10.jpg";
 import one from "../assets/1.jpg";
 import two from "../assets/2.jpg";
 
@@ -32,7 +36,19 @@ const HomeImage = () => {
       <div className="w-full max-w-4xl mb-8 hidden sm:block" >
         <Slider {...settings}>
           <div>
-            <img src={Banner3} alt="Example Image" className="w-full h-auto" />
+            <img src={Banner7} alt="Example Image" className="w-full h-auto" />
+          </div>
+          <div>
+            <img src={Banner8} alt="Example Image" className="w-full h-auto" />
+          </div>
+          <div>
+            <img src={Banner9} alt="Example Image" className="w-full h-auto" />
+          </div>
+          <div>
+            <img src={Banner10} alt="Example Image" className="w-full h-auto" />
+          </div>
+          <div >
+            <img src={Banner3} alt="Example Image" className=" flex justify-center items-center w-full h-auto" />
           </div>
           <div>
             <img src={Banner4} alt="Example Image" className="w-full h-auto" />

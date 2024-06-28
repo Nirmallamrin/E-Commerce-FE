@@ -26,9 +26,7 @@ export default function AdminSignin() {
       const res = await axios.post(
         "https://e-commerce-be-yi97.onrender.com/admin/signin",
         data,
-        {
-          withCredentials: true,
-        }
+
       );
 
       console.log(res.data);

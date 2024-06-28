@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { FiDelete } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-const schema = yup.object ({
-    
+const schema = yup.object ({ 
     email: yup.string().email().required("Email is required"),
     password: yup.string().min(6).required("Password is required"),
 });
@@ -19,21 +18,23 @@ export default function UserSignin() {
   const {
     register,
     handleSubmit,
-    
     formState: { errors },
   } = useForm({
     resolver : yupResolver(schema),
   })
 
   const onSubmit = async (data) => {
-
     try {
-      const res = await axios.post("https://e-commerce-be-yi97.onrender.com/users/signin" ,data);
-      if(res.data.message === "Logged in!"){
-      sessionStorage.setItem('userToken', res.data.token);
-      console.log(res.data)
-      toast.success("Successfully signed in");
-      navigate("/");
+      const res = await axios.post(
+        "https://e-commerce-be-yi97.onrender.com/users/signin" ,
+        data,       
+      );
+        
+      if(res.data.message === "Logged in!") {      
+        sessionStorage.setItem('userToken', res.data.token); 
+        console.log("token",res.data.token)       
+        toast.success("Successfully signed in");
+        navigate("/");
     }else {
       toast.error("Password is not correct");
     }
