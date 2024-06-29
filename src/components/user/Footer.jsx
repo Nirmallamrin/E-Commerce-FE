@@ -12,8 +12,8 @@ const Footer = () => {
           </div>
           <nav className="flex gap-4 text-center md:text-left">
             <a href="#" className="text-sm hover:text-gray-400">Home</a>
-            <a href="/about-contact#about-us" className="text-sm hover:text-gray-400">About Us</a>
-            <a href="/about-contact#contact-us" className="text-sm hover:text-gray-400">Contact Us</a>
+            <a href="/about-contact" className="text-sm hover:text-gray-400">About Us & Contact us</a>
+            <a href="#" className="text-sm hover:text-gray-400">Help</a>
           </nav>
           <div className="flex gap-4 text-center md:text-left mt-4 md:mt-0">
             <a href="#" className="text-sm hover:text-gray-400">
