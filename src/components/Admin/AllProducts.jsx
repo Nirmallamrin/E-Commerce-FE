@@ -75,14 +75,18 @@ const AllProducts = () => {
       if (updatedImage) {
         formData.append('image', updatedImage);
       }
+      
+      const token = localStorage.getItem('token');
   
       try {        
-        const res = await axios.put(`http://localhost:3000/api/v1/product/admin/update/${selectedProduct._id}`, formData, {
-          withCredentials:true,
-          headers: {            
-            'Content-Type': 'multipart/form-data',
-          }
+        const res = await axios.put(`https://e-commerce-be-yi97.onrender.com/product/admin/update/${selectedProduct._id}`,
+           formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+            },
         });
+        console.log(token)
         const updatedProduct = await res.data;
         setProducts(products.map((product) => (product._id === selectedProduct._id ? updatedProduct : product)));
         onClose();

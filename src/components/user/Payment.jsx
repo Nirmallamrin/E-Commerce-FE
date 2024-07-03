@@ -35,7 +35,7 @@ const Payment = () => {
       console.log(order);
 
       var options = {
-        key: import.meta.env.RAZORPAY_KEY_ID,
+        key: "rzp_test_L6wBhNL2VYpuYf",
         amount: order.amount, // Example amount (in currency subunits)
         currency: order.currency,
         name: 'Shopy',
@@ -94,11 +94,7 @@ const Payment = () => {
       rzp1.on('payment.failed', function (response) {
         alert(response.error.code);
         alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
+       
       });
 
       // Open Razorpay payment form
