@@ -10,6 +10,7 @@ const AdminApp = () => {
     sessionStorage.removeItem("adminToken");
     toast.success("Successfully logged out");
     navigate("/admin");
+    
   };
   return (
     <nav className="p-4 bg-gray-800 text-white">

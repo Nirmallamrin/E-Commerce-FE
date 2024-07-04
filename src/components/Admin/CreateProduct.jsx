@@ -30,7 +30,7 @@ const CreateProduct = () => {
       description:data.description
     };
 
-    const token = sessionStorage.getItem("userToken");
+    const token = sessionStorage.getItem("adminToken");
     if (!token) {
       alert("You need to sign in first.");
       return;
@@ -40,9 +40,16 @@ const CreateProduct = () => {
       const res = await axios.post(
         "https://e-commerce-be-yi97.onrender.com/product/admin/products/new",
         requestBody,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            
+          },
+        }
 
  
       );
+      console.log(res.data)
       alert("Successfully Added")
       
     } catch (error) {
