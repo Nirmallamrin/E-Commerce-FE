@@ -6,6 +6,8 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { FiDelete } from "react-icons/fi";
 import { toast } from "react-toastify";
+import { useStatStyles } from "@chakra-ui/react"
+import { useState } from "react"
 
 const schema = yup.object ({ 
     email: yup.string().email().required("Email is required"),
@@ -15,6 +17,7 @@ const schema = yup.object ({
 export default function UserSignin() {
 
   const navigate = useNavigate()
+  
   const {
     register,
     handleSubmit,
@@ -32,6 +35,7 @@ export default function UserSignin() {
         
       if(res.data.message === "Logged in!") {      
         sessionStorage.setItem('userToken', res.data.token); 
+        sessionStorage.setItem("username", res.data.username);
         console.log("token",res.data.token)       
         toast.success("Successfully signed in");
         navigate("/");

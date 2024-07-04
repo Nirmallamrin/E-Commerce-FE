@@ -51,11 +51,11 @@ export default function AdminSignin() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 rounded-md border p-6 bg-white shadow-lg"
       >
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <Link to="/admin">
             <FiDelete className="text-2xl cursor-pointer font-bold" />
           </Link>
-        </div>
+        </div> */}
 
         <h2 className="text-2xl font-bold text-center mb-4">Sign in</h2>
         <input
@@ -83,7 +83,7 @@ export default function AdminSignin() {
           value="Sign in"
         />
 
-        <p className="mt-4">
+        {/* <p className="mt-4">
           Create New
           <Link
             to="/admin/signup"
@@ -91,7 +91,7 @@ export default function AdminSignin() {
           >
             Signup
           </Link>
-        </p>
+        </p> */}
       </form>
     </div>
   );

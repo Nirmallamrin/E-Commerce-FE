@@ -29,10 +29,6 @@ const Navbar = () => {
 
   const handleSearchSubmit = () => {};
 
-  // const toggleDropdown = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
   return (
     <nav className="bg-cyan-100  p-4 md:p-6 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap">
@@ -103,7 +99,7 @@ const Navbar = () => {
               <MenuItem>Customer Service</MenuItem>
               <MenuItem onClick={tokenRelease}>Logout</MenuItem>
               <MenuItem>
-                  <Link to="admin">Admin</Link>
+                  <Link to="admin/signin">Admin</Link>
                 </MenuItem>
             </MenuList>
           </Menu>
