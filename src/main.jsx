@@ -27,6 +27,8 @@ import Payment from "./components/user/Payment.jsx";
 import PaymentSuccess from "./components/user/PaymentSuccess.jsx";
 import UserOrders from "./components/user/UserOrders.jsx";
 import AboutUsContactUs from "./components/Pages/AboutContactUs.jsx";
+import AdminRoute from "./components/Routes/AdminRoute.jsx";
+import ManageUsers from "./components/Admin/ManageUsers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +53,6 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Order />
           </PrivateRoute>
-          
         ),
       },
 
@@ -108,26 +109,17 @@ const router = createBrowserRouter([
     element: <AboutUsContactUs />,
   },
 
-
   {
     path: "/admin",
     element: <AdminLayout />,
     children: [
-      {
-        path: "signin",
-        element: <AdminSignin />,
-      },
-      {
-        path: "signup",
-        element: <AdminSignup />,
-      },
       {
         path: "manageproducts",
         element: <ManageProducts />,
         children: [
           {
             path: "all",
-            element: <AllProducts />,
+            element:<AllProducts />, 
           },
           {
             path: "new",
@@ -135,7 +127,19 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path:"manageusers",
+        element:<ManageUsers/>
+      }
     ],
+  },
+  {
+    path: "admin/signin",
+    element:  <AdminSignin />,     
+  },
+  {
+    path: "admin/signup",
+    element: <AdminSignup />,
   },
 ]);
 
@@ -143,7 +147,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
-        <RouterProvider router={router} />  
+        <RouterProvider router={router} />
         <ToastContainer />
       </AuthProvider>
     </Provider>

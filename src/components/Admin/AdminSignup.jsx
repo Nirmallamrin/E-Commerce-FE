@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const adminSchema = yup.object({
   userName: yup.string().required(),
@@ -28,14 +29,17 @@ export default function AdminSignup() {
       const res = await axios.post(
         "https://e-commerce-be-yi97.onrender.com/admin/signup",
         data,
-        {
-          withCredentials: true,
-        }
+
       );
       
-      console.log(res.data);
-      navigate('/admin')
-
+      if(res.data.message === "Admin signed up successfully") {      
+        sessionStorage.setItem('userToken', res.data.token); 
+        console.log("token",res.data.token)       
+        toast.success("Successfully Admin signed up!");
+        navigate("/admin");
+    }else {
+      toast.error("Password is not correct");
+    }
     } catch (error) {
       console.log(error);
     }

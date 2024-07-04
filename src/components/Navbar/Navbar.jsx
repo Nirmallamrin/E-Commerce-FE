@@ -102,6 +102,9 @@ const Navbar = () => {
               <MenuItem>Report Us</MenuItem>
               <MenuItem>Customer Service</MenuItem>
               <MenuItem onClick={tokenRelease}>Logout</MenuItem>
+              <MenuItem>
+                  <Link to="admin">Admin</Link>
+                </MenuItem>
             </MenuList>
           </Menu>
         </div>

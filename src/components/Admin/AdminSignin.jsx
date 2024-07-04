@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FiDelete } from "react-icons/fi";
 
 const schema = yup.object({
   email: yup.string().email(),
@@ -26,12 +28,18 @@ export default function AdminSignin() {
       const res = await axios.post(
         "https://e-commerce-be-yi97.onrender.com/admin/signin",
         data,
-
-      );
-
-      console.log(res.data);
-
-      navigate("/admin");
+      ); 
+      console.log("Response data:", res.data);
+      console.log("token", res.data.token)
+      if(res.data.message === "Admin Logged in!") {      
+        sessionStorage.setItem('adminToken', res.data.token); 
+        console.log("token",res.data.token)       
+        toast.success("Successfully Admin Logged in!");
+        navigate("/admin");
+    }else {
+      toast.error("Password is not correct");
+    }
+   
     } catch (error) {
       console.log(error);
     }
@@ -43,6 +51,13 @@ export default function AdminSignin() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 rounded-md border p-6 bg-white shadow-lg"
       >
+        <div className="flex justify-end">
+          <Link to="/admin">
+            <FiDelete className="text-2xl cursor-pointer font-bold" />
+          </Link>
+        </div>
+
+        <h2 className="text-2xl font-bold text-center mb-4">Sign in</h2>
         <input
           {...register("email")}
           placeholder="Enter your email"
