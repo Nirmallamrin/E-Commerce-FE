@@ -65,7 +65,7 @@ const AllProducts = () => {
 
     try {
       await axios.delete(
-        `http://localhost:3000/api/v1/product/admin/delete/${productId}`
+        `https://e-commerce-be-yi97.onrender.com/admin/delete/${productId}`
       );
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
