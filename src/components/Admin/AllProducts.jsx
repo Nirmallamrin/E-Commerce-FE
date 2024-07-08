@@ -137,8 +137,8 @@ const AllProducts = () => {
       <main className="flex flex-wrap gap-6 justify-center p-6">
         {products &&
           products.map((product, index) => (
-            <div key={index}>
-              <Card maxW="sm" className="w-64">
+            <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4">
+              <Card maxW="sm " className="w-64">
                 <CardBody>
                   <Image
                     maxW={{ base: "100%", sm: "200px" }}
@@ -148,8 +148,8 @@ const AllProducts = () => {
                     className="w-full h-48 object-cover"
                   />
                   <Stack mt="6" spacing="3">
-                    <Heading size="md">{product.title}</Heading>
-                    <Text color="blue.600" fontSize="">
+                    <Heading size="md" className="font-bold text-xl mb-2">{product.title}</Heading>
+                    <Text color="blue.600" className="text-gray-700 text-base">
                       {product.description}
                     </Text>
 
@@ -164,6 +164,7 @@ const AllProducts = () => {
                     <Button
                       variant="solid"
                       colorScheme="blue"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       onClick={() => handleUpdate(product)}
                     >
                       Update
@@ -171,6 +172,7 @@ const AllProducts = () => {
                     <Button
                       variant="ghost"
                       colorScheme="blue"
+                      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-2"
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete

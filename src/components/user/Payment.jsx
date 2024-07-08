@@ -41,14 +41,9 @@ const Payment = () => {
         name: 'Shopy',
         description: 'Payment for Order ID: ' + orderDetails._id,
         image: 'https://example.com/your_logo',
-        order_id: order.id, // Replace with your actual order ID
+        order_id: order.id, 
 
-        // handler: async function (response) {
-        //   alert(response.razorpay_payment_id);
-        //   alert(response.razorpay_order_id);
-        //   alert(response.razorpay_signature);
-        //   navigate("/success")         
-        //   console.log(response);
+
 
         handler: async function (response) {
           console.log(response);
