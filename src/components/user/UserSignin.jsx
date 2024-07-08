@@ -34,9 +34,7 @@ export default function UserSignin() {
       );
         
       if(res.data.message === "Logged in!") {      
-        sessionStorage.setItem('userToken', res.data.token); 
-        sessionStorage.setItem("username", res.data.username);
-        console.log("token",res.data.token)       
+        sessionStorage.setItem('userToken', res.data.token);    
         toast.success("Successfully signed in");
         navigate("/");
     }else {

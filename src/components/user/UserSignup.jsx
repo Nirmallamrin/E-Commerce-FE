@@ -34,7 +34,6 @@ export default function UserSignup() {
       if (res.data.message === "Signed Successfully!") {
 
         sessionStorage.setItem("userToken", res.data.token);
-        sessionStorage.setItem("username", res.data.username);
         console.log("token",res.data.token)
         toast.success("Successfully signed up");
         navigate("/");

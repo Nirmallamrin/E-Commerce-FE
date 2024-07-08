@@ -2,13 +2,19 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/actions/CartActions";
 import { Card, CardBody,Text, Button,Image, Stack, Heading,CardFooter } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
 const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 const totalItems = cart.length;
+
+const handlePlaceOrder = (product) => {
+  navigate("/order", { state: { product } });
+};
 
   return (
     <div className=" flex mt-5">
@@ -46,7 +52,9 @@ const totalItems = cart.length;
             <Button variant="solid" colorScheme="blue" onClick={() => dispatch(removeFromCart(item._id))}>
               Remove from cart
             </Button>
-            <Button variant="solid" colorScheme="blue">
+            <Button variant="solid" colorScheme="blue"
+            onClick={() => handlePlaceOrder(item)}
+            >
               Place the order
             </Button>
           </CardFooter>

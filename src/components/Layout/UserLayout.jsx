@@ -15,7 +15,6 @@ const UserLayout = () => {
         <nav>
           <Navbar />
         </nav>
-
         <div className="flex justify-center">
           <Categories />
         </div>

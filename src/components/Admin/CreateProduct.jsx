@@ -43,11 +43,8 @@ const CreateProduct = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            
           },
         }
-
- 
       );
       console.log(res.data)
       alert("Successfully Added")

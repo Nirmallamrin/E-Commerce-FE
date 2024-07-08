@@ -1,27 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   IconButton,
-  
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { SearchIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { MdAccountCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    
+    const userToken = sessionStorage.getItem("userToken");
+    if (userToken) {
+      setAuthenticated(true);
+    } else {
+      setAuthenticated(false);
+    }
+  }, []);
 
   const tokenRelease = () => {
     sessionStorage.removeItem("userToken");
     toast.success("Successfully logged out");
+    setAuthenticated(false);
     navigate("/");
   };
 
@@ -30,7 +39,7 @@ const Navbar = () => {
   const handleSearchSubmit = () => {};
 
   return (
-    <nav className="bg-cyan-100  p-4 md:p-6 shadow-md">
+    <nav className="bg-cyan-100 p-4 md:p-6 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap">
         <div className="flex items-center space-x-4">
           <Link to="/">
@@ -55,22 +64,32 @@ const Navbar = () => {
           </form>
         </div>
 
-        <div className="hidden  md:flex items-center space-x-4 mt-4 ">
-          <Link to="/users/signin">
-            <span className="  text-slate-950 cursor-pointer hover:underline flex items-center">
-              <MdAccountCircle className="h-5 w-5 mr-1" /> Login
+        <div className="hidden md:flex items-center space-x-4 mt-4">
+           {authenticated ? (
+            <span
+              className="text-slate-950 cursor-pointer hover:underline flex items-center"
+              onClick={tokenRelease}
+            >
+              Logout
+            </span>
+          ) : (
+            <Link to="/users/signin">
+              <span className="text-slate-950 cursor-pointer hover:underline flex items-center">
+                Login
+              </span>
+            </Link>
+          )}
+          
+
+          <Link to="cart">
+            <span className="text-slate-950 cursor-pointer hover:underline flex items-center">
+              <ShoppingCartIcon className="h-5 w-5 mr-1" /> Cart
             </span>
           </Link>
 
-          <Link to="cart">
-            <li className="text-slate-950 cursor-pointer hover:underline flex items-center">
-              <ShoppingCartIcon className="h-5 w-5 mr-1" /> Cart
-            </li>
-          </Link>
-
           <Link to="orders">
-            <span className="text-slate-950  cursor-pointer hover:underline">
-              MyOrders
+            <span className="text-slate-950 cursor-pointer hover:underline">
+              My Orders
             </span>
           </Link>
         </div>
@@ -84,9 +103,15 @@ const Navbar = () => {
             />
             <MenuList className="bg-white">
               <div className="md:hidden">
-                <MenuItem>
-                  <Link to="/users/signin">Login</Link>
-                </MenuItem>
+                
+              {authenticated ? (
+                  <MenuItem onClick={tokenRelease}>Logout</MenuItem>
+                ) : (
+                  <MenuItem>
+                    <Link to="/users/signin">Login</Link>
+                  </MenuItem>
+                )}
+                
                 <MenuItem>
                   <Link to="cart">Cart</Link>
                 </MenuItem>
@@ -99,8 +124,8 @@ const Navbar = () => {
               <MenuItem>Customer Service</MenuItem>
               <MenuItem onClick={tokenRelease}>Logout</MenuItem>
               <MenuItem>
-                  <Link to="admin/signin">Admin</Link>
-                </MenuItem>
+                <Link to="admin/signin">Admin</Link>
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
