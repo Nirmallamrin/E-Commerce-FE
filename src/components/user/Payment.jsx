@@ -9,7 +9,6 @@ const Payment = () => {
 
   useEffect(() => {
     if (!orderDetails) {
-      // Redirect to an error page or back to the orders page if orderDetails is not available
       navigate('/order/ordesss');
     }
   }, [orderDetails, navigate]);
@@ -24,7 +23,7 @@ const Payment = () => {
       const response = await axios.post(
         'https://e-commerce-be-yi97.onrender.com/payment/createorder',
         {
-          amount: orderDetails.totalPrice,
+          amount: orderDetails.totalPrice ,
           currency: 'INR',
           receipt: `order_rcptid_${orderDetails._id}`,
           notes: ['This is a test note'],

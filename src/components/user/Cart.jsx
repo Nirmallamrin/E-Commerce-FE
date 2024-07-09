@@ -1,70 +1,111 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/actions/CartActions";
-import { Card, CardBody,Text, Button,Image, Stack, Heading,CardFooter } from "@chakra-ui/react";
+import {
+  Card,
+  CardBody,
+  Text,
+  Button,
+  Image,
+  Stack,
+  Heading,
+  CardFooter,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
-const totalItems = cart.length;
+  const [qty, setQty] = useState(1)
 
-const handlePlaceOrder = (product) => {
-  navigate("/order", { state: { product } });
-};
+  const handleQtyChange = (operataion) => {
+    setQty((prevQty) => {
+      const newQty = operataion === "increment" ? prevQty + 1 : prevQty - 1;
+      return newQty > 0 ? newQty : 1;
+    })
+  }
+
+  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const totalItems = cart.length;
+
+  const handlePlaceOrder = (product) => {
+    navigate("/order", { state: { product } });
+  };
 
   return (
     <div className=" flex mt-5">
       <div className="flex-1">
-      <h2 className="text-xl font-bold flex justify-center mb-4">Shopping Cart</h2>
-      {cart.map((item) => (
-       
-        <Card
-        key={item._id}
-        direction={{ base: "column", sm: "row" }}
-        overflow="hidden"
-        variant="outline"
-        className="mb-4"
-      >
-        <Image
-          objectFit="cover"
-          maxW={{ base: "100%", sm: "200px" }}
-          src={item.image.url}
-          alt={item.title}
-        />
+        <h2 className="text-xl font-bold flex justify-center mb-4">
+          Shopping Cart
+        </h2>
+        {cart.map((item) => (
+          <Card
+            key={item._id}
+            direction={{ base: "column", sm: "row" }}
+            overflow="hidden"
+            variant="outline"
+            className="mb-4"
+          >
+            <Image
+              objectFit="cover"
+              maxW={{ base: "100%", sm: "200px" }}
+              src={item.image.url}
+              alt={item.title}
+            />
 
-        <Stack>
-          <CardBody>
-            <Heading size="md">{item.title}</Heading>
+            <Stack>
+              <CardBody>
+                <Heading size="md">{item.title}</Heading>
 
-            <Text py="2">
-              {item.description}
-            </Text>
-            <Text py="2">
-            Price: INR {item.price}
-            </Text>
-          </CardBody>
+                <Text py="2">{item.description}</Text>
+                <Text py="2">Price: INR {item.price * qty}</Text>
+              </CardBody>
+              <div className="flex items-center">
+                <div className="flex gap-2 bg-slate-100   p-2 rounded-md mx-2">
+                  <h5>Qty</h5>
+                  <button
+                    className="font-bold "
+                    onClick={() => handleQtyChange("decrement")}
+                  >
+                    -
+                  </button>
+                  <p>{qty}</p>
+                  <button
+                    className="font-bold "
+                    onClick={() => handleQtyChange("increment")}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
 
-          <CardFooter className="gap-2">
-            <Button variant="solid" colorScheme="blue" onClick={() => dispatch(removeFromCart(item._id))}>
-              Remove from cart
-            </Button>
-            <Button variant="solid" colorScheme="blue"
-            onClick={() => handlePlaceOrder(item)}
-            >
-              Buy Now
-            </Button>
-          </CardFooter>
-        </Stack>
-      </Card>
-      ))}
+              <CardFooter className="gap-2">
+                <Button
+                  variant="solid"
+                  colorScheme="blue"
+                  onClick={() => dispatch(removeFromCart(item._id))}
+                >
+                  Remove from cart
+                </Button>
+                <Button
+                  variant="solid"
+                  colorScheme="blue"
+                  onClick={() => handlePlaceOrder(item)}
+                >
+                  Buy Now
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        ))}
       </div>
 
       <div className="flex-1 ml-4">
-        <h2 className="text-xl font-bold flex justify-center mb-4">Price Details</h2>
+        <h2 className="text-xl font-bold flex justify-center mb-4">
+          Price Details
+        </h2>
         <div className="bg-white shadow-md p-4 rounded-lg">
           <div className="flex justify-between mb-2">
             <span>Price ({totalItems} items)</span>

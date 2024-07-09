@@ -19,7 +19,6 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 
 const Order = () => {
   const navigate = useNavigate();
-
   const location = useLocation();
   const { product } = location.state || {};
   const [shippingAddress, setShippingAddress] = useState({
@@ -30,11 +29,19 @@ const Order = () => {
     pincode: "",
     country: "",
   });
+  const [qty, setQty] = useState(1)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setShippingAddress({ ...shippingAddress, [name]: value });
   };
+
+  const handleQtyChange = (operataion) => {
+    setQty((prevQty) => {
+      const newQty = operataion === "increment" ? prevQty + 1 : prevQty - 1;
+      return newQty > 0 ? newQty : 1;
+    })
+  }
 
   const handleOrder = async () => {
     const token = sessionStorage.getItem("userToken");
@@ -60,7 +67,7 @@ const Order = () => {
             },
           ],
           paymentMethod: "Credit Card",
-          totalPrice: product.price,
+          totalPrice: product.price * qty,
         },
         {
           headers: {
@@ -108,15 +115,15 @@ const Order = () => {
               </Text>
               <Text py="2" className="flex items-center">
                 <FaIndianRupeeSign className="mr-0" />
-                {product.price}
+                {product.price * qty}
               </Text>
 
               <div className="flex items-center">
                 <div className="flex gap-2 bg-blue-200 p-1 rounded-md">
                   <h5>Qty</h5>
-                  <button className="font-bold ">-</button>
-                  <p>1</p>
-                  <button className="font-bold ">+</button>
+                  <button className="font-bold " onClick={() => handleQtyChange("decrement")}>-</button>
+                  <p>{qty}</p>
+                  <button className="font-bold " onClick={() => handleQtyChange("increment")}>+</button>
                 </div>
               </div>
             </CardBody>
