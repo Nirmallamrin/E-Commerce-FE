@@ -55,7 +55,7 @@ const handlePlaceOrder = (product) => {
             <Button variant="solid" colorScheme="blue"
             onClick={() => handlePlaceOrder(item)}
             >
-              Place the order
+              Buy Now
             </Button>
           </CardFooter>
         </Stack>

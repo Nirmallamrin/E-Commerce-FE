@@ -19,6 +19,7 @@ const CreateProduct = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
@@ -48,7 +49,7 @@ const CreateProduct = () => {
       );
       console.log(res.data)
       alert("Successfully Added")
-      
+      reset();
     } catch (error) {
       console.error('There was an error creating the product!', error);
       alert('Failed to add product');

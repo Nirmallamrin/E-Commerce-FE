@@ -2,9 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import { FaArrowCircleUp } from "react-icons/fa";
 
 const Footer = () => {
   return (
+    <div>
     <footer className="bg-black text-white py-12 ">
       <div className="container mx-auto px-12">
         <div className="flex flex-col md:flex-row justify-between items-center">
@@ -12,7 +14,7 @@ const Footer = () => {
             <p className="text-sm">Shopy &copy; {new Date().getFullYear()}</p>
           </div>
           <nav className="flex gap-4 text-center md:text-left">
-            <Link to="/" className="text-sm hover:text-gray-400">Home</Link>
+            <Link smooth to="/" className="text-sm hover:text-gray-400">Home</Link>
             <Link smooth to="/about-contact#about-us" className="text-sm hover:text-gray-400">About Us & Contact Us</Link>
             <Link smooth to="#" className="text-sm hover:text-gray-400">Help</Link>
           </nav>
@@ -30,6 +32,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </div>
   );
 }
 

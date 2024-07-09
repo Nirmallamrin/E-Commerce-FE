@@ -11,7 +11,7 @@ const UserLayout = () => {
   const isHomePage = location.pathname === "/";
   return (
     <ChakraProvider>
-      <div>
+      <div id="top">
         <nav>
           <Navbar />
         </nav>
