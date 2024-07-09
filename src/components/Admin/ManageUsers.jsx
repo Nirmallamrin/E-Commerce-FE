@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Heading } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Heading, Button } from '@chakra-ui/react';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -17,6 +17,15 @@ const ManageUsers = () => {
     fetchUsers();
   }, []);
 
+  const handleDeleteUser = async (userId) => {
+    try {
+      await axios.delete(`https://e-commerce-be-yi97.onrender.com/admin/users/${userId}`);
+      setUsers(users.filter(user => user._id !== userId));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+
   return (
     <div className="p-4">
       <Heading as="h2" size="xl" mb="4">Manage Users</Heading>
@@ -27,6 +36,7 @@ const ManageUsers = () => {
               <Th>Username</Th>
               <Th>Email</Th>
               <Th>Role</Th>
+              <Th>Delete User</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -35,6 +45,9 @@ const ManageUsers = () => {
                 <Td>{user.userName}</Td>
                 <Td>{user.email}</Td>
                 <Td>{user.role}</Td>
+                <Td>
+                  <Button colorScheme="red" onClick={() => handleDeleteUser(user._id)}>Delete</Button>
+                </Td>
               </Tr>
             ))}
           </Tbody>
