@@ -122,7 +122,7 @@ const Navbar = () => {
               <MenuItem>My Profile</MenuItem>
               <MenuItem>Report Us</MenuItem>
               <MenuItem>Customer Service</MenuItem>
-              <MenuItem onClick={tokenRelease}>Logout</MenuItem>
+              
               <MenuItem>
                 <Link to="admin/signin">Admin</Link>
               </MenuItem>
