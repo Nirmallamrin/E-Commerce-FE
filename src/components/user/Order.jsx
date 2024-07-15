@@ -12,6 +12,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Box,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -29,7 +30,7 @@ const Order = () => {
     pincode: "",
     country: "",
   });
-  const [qty, setQty] = useState(1)
+  const [qty, setQty] = useState(1);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,13 +41,13 @@ const Order = () => {
     setQty((prevQty) => {
       const newQty = operataion === "increment" ? prevQty + 1 : prevQty - 1;
       return newQty > 0 ? newQty : 1;
-    })
-  }
+    });
+  };
 
   const handleOrder = async () => {
     const token = sessionStorage.getItem("userToken");
     console.log("Retrieved token:", token);
-    
+
     if (!token) {
       toast.error("Please sign in to place an order.");
       navigate("/users/signin");
@@ -118,14 +119,26 @@ const Order = () => {
                 {product.price * qty}
               </Text>
 
-              <div className="flex items-center">
-                <div className="flex gap-2 bg-blue-200 p-1 rounded-md">
-                  <h5>Qty</h5>
-                  <button className="font-bold " onClick={() => handleQtyChange("decrement")}>-</button>
-                  <p>{qty}</p>
-                  <button className="font-bold " onClick={() => handleQtyChange("increment")}>+</button>
-                </div>
-              </div>
+              <Box className="flex items-center">
+                <Box className="flex gap-2 bg-blue-200 p-1 rounded-md items-center">
+                <Text fontSize="lg" fontWeight="bold">Qty</Text>
+                <Button
+                    size="sm"
+                    fontWeight="bold"
+                    onClick={() => handleQtyChange( "decrement")}
+                  >
+                    -
+                  </Button>
+                  <Text fontSize="lg">{qty}</Text>
+                  <Button
+                    size="sm"
+                    fontWeight="bold"
+                    onClick={() => handleQtyChange( "increment")}
+                  >
+                    +
+                  </Button>
+                </Box>
+              </Box>
             </CardBody>
           </Stack>
         </Card>

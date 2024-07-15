@@ -10,6 +10,7 @@ import {
   Stack,
   Heading,
   CardFooter,
+  Box,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -74,24 +75,26 @@ const Cart = () => {
                 <Text py="2">{item.description}</Text>
                 <Text py="2">Price: INR {item.price * quantities[item._id]}</Text>
               </CardBody>
-              <div className="flex items-center">
-                <div className="flex gap-2 bg-slate-100   p-2 rounded-md mx-2">
-                  <h5>Qty</h5>
-                  <button
-                    className="font-bold "
+              <Box className="flex items-center">
+                <Box className="flex gap-2 bg-blue-100 p-1 rounded-md items-center mx-4">
+                  <Text fontSize="lg" fontWeight="bold">Qty</Text>
+                  <Button
+                    size="sm"
+                    fontWeight="bold"
                     onClick={() => handleQtyChange(item._id, "decrement")}
                   >
                     -
-                  </button>
-                  <p>{quantities[item._id]}</p>
-                  <button
-                    className="font-bold "
+                  </Button>
+                  <Text fontSize="lg">{quantities[item._id]}</Text>
+                  <Button
+                    size="sm"
+                    fontWeight="bold"
                     onClick={() => handleQtyChange(item._id, "increment")}
                   >
                     +
-                  </button>
-                </div>
-              </div>
+                  </Button>
+                </Box>
+              </Box>
 
               <CardFooter className="gap-2">
                 <Button
