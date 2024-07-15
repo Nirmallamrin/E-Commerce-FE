@@ -14,9 +14,9 @@ const Footer = () => {
             <p className="text-sm">Shopy &copy; {new Date().getFullYear()}</p>
           </div>
           <nav className="flex gap-4 text-center md:text-left">
-            <Link smooth to="/" className="text-sm hover:text-gray-400">Home</Link>
-            <Link smooth to="/about-contact#about-us" className="text-sm hover:text-gray-400">About Us & Contact Us</Link>
-            <Link smooth to="#" className="text-sm hover:text-gray-400">Help</Link>
+            <Link  to="/" className="text-sm hover:text-gray-400">Home</Link>
+            <Link  to="/about-contact#about-us" className="text-sm hover:text-gray-400">About Us & Contact Us</Link>
+            <Link  to="#" className="text-sm hover:text-gray-400">Help</Link>
           </nav>
           <div className="flex gap-4 text-center md:text-left mt-4 md:mt-0">
             <a href="#" className="text-sm hover:text-gray-400">

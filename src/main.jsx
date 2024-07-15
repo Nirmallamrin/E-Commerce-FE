@@ -29,6 +29,7 @@ import UserOrders from "./components/user/UserOrders.jsx";
 import AboutUsContactUs from "./components/Pages/AboutContactUs.jsx";
 import AdminRoute from "./components/Routes/AdminRoute.jsx";
 import ManageUsers from "./components/Admin/ManageUsers.jsx";
+import CartCheckout from "./components/user/CartCheckout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Cart />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "cartcheckout",
+        element: (
+          <PrivateRoute>
+            <CartCheckout />
           </PrivateRoute>
         ),
       },

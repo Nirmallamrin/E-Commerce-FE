@@ -34,6 +34,10 @@ const Cart = () => {
     navigate("/order", { state: { product } });
   };
 
+  const handleProceed = () => {
+    navigate("/cartcheckout", { state: { cart, totalPrice: totalPrice + 99 } });
+  }
+
   return (
     <div className=" flex mt-5">
       <div className="flex-1">
@@ -60,21 +64,21 @@ const Cart = () => {
                 <Heading size="md">{item.title}</Heading>
 
                 <Text py="2">{item.description}</Text>
-                <Text py="2">Price: INR {item.price * qty}</Text>
+                <Text py="2">Price: INR {item.price * qty[item._id]}</Text>
               </CardBody>
               <div className="flex items-center">
                 <div className="flex gap-2 bg-slate-100   p-2 rounded-md mx-2">
                   <h5>Qty</h5>
                   <button
                     className="font-bold "
-                    onClick={() => handleQtyChange("decrement")}
+                    onClick={() => handleQtyChange(item._id,"decrement")}
                   >
                     -
                   </button>
                   <p>{qty}</p>
                   <button
                     className="font-bold "
-                    onClick={() => handleQtyChange("increment")}
+                    onClick={() => handleQtyChange(item._id,"increment")}
                   >
                     +
                   </button>
@@ -127,6 +131,9 @@ const Cart = () => {
           <div className="flex justify-between mt-2 font-semibold">
             <span>Total Amount</span>
             <span>₹{totalPrice + 99}</span>
+          </div>
+          <div className="flex justify-center items-center">
+          <button className="bg-cyan-300 p-2 rounded" onClick={handleProceed}>Proceed to Checkout</button>
           </div>
         </div>
       </div>
