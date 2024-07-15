@@ -18,16 +18,24 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [qty, setQty] = useState(1)
+  const initialQuantities = cart.reduce((acc, item) => {
+    acc[item._id] = 1;
+    return acc;
+  }, {});
 
-  const handleQtyChange = (operataion) => {
-    setQty((prevQty) => {
-      const newQty = operataion === "increment" ? prevQty + 1 : prevQty - 1;
-      return newQty > 0 ? newQty : 1;
-    })
-  }
+  const [quantities, setQuantities] = useState(initialQuantities);
 
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const handleQtyChange = (itemId, operation) => {
+    setQuantities((prevQuantities) => {
+      const newQty = operation === "increment" ? prevQuantities[itemId] + 1 : prevQuantities[itemId] - 1;
+      return {
+        ...prevQuantities,
+        [itemId]: newQty > 0 ? newQty : 1,
+      };
+    });
+  };
+
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * quantities[item._id], 0);
   const totalItems = cart.length;
 
   const handlePlaceOrder = (product) => {
@@ -64,21 +72,21 @@ const Cart = () => {
                 <Heading size="md">{item.title}</Heading>
 
                 <Text py="2">{item.description}</Text>
-                <Text py="2">Price: INR {item.price * qty[item._id]}</Text>
+                <Text py="2">Price: INR {item.price * quantities[item._id]}</Text>
               </CardBody>
               <div className="flex items-center">
                 <div className="flex gap-2 bg-slate-100   p-2 rounded-md mx-2">
                   <h5>Qty</h5>
                   <button
                     className="font-bold "
-                    onClick={() => handleQtyChange(item._id,"decrement")}
+                    onClick={() => handleQtyChange(item._id, "decrement")}
                   >
                     -
                   </button>
-                  <p>{qty}</p>
+                  <p>{quantities[item._id]}</p>
                   <button
                     className="font-bold "
-                    onClick={() => handleQtyChange(item._id,"increment")}
+                    onClick={() => handleQtyChange(item._id, "increment")}
                   >
                     +
                   </button>
