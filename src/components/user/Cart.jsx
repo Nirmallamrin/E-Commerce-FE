@@ -148,7 +148,7 @@ const Cart = () => {
             <div className="border-t border-slate-100 pt-4 mt-4">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-slate-800">Total Amount</span>
-                <span className="text-2xl font-extrabold text-cyan-600">₹{totalPrice + 99}</span>
+                <span className="text-2xl font-extrabold text-cyan-600">₹{totalPrice + 49}</span>
               </div>
             </div>
           </div>

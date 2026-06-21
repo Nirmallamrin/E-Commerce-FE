@@ -298,7 +298,7 @@ const Navbar = () => {
                       </Link>
                       <button
                         onClick={tokenRelease}
-                        className="text-left px-4 py-2 hover:bg-slate-50 rounded-lg hover:text-red-500 transition-colors font-medium text-slate-700"
+                        className="text-left px-4  py-2 hover:bg-slate-50 rounded-lg hover:text-red-500 transition-colors font-medium text-slate-700"
                       >
                         Logout
                       </button>
