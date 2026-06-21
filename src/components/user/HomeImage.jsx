@@ -1,93 +1,83 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image from "../assets/image2.jpg";
-import Shop3 from "../assets/shop3.jpg";
-import Shop5 from "../assets/shop5.jpg";
-import Shop6 from "../assets/shop6.jpg";
-import Image4 from "../assets/image4.jpg";
-import Banner from "../assets/banner1.png";
-import Banner2 from "../assets/banner2.png";
-import Banner3 from "../assets/banner3.jpg";
-import Banner4 from "../assets/banner4.jpg";
-import Banner5 from "../assets/banner5.jpg";
-import Banner6 from "../assets/banner6.jpg";
-import Banner7 from "../assets/banner7.jpg";
-import Banner8 from "../assets/banner8.jpg";
-import Banner9 from "../assets/banner9.jpg";
-import Banner10 from "../assets/banner10.jpg";
-import one from "../assets/1.jpg";
-import two from "../assets/2.jpg";
 
 const HomeImage = () => {
   const settings = {
-    dots: true,
+    className: "center hero-slider",
+    centerMode: true,
     infinite: true,
-    speed: 500,
+    centerPadding: "12%",
     slidesToShow: 1,
-    slidesToScroll: 1,
+    speed: 600,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
+    dots: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          centerPadding: "5%",
+        }
+      }
+    ]
   };
 
+  const banners = [
+    {
+      title: "Discover Apple iPhone 17 Pro Now",
+      bgImage: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=1600&q=80",
+      buttonText: "Learn more",
+      gradient: "from-red-600 via-rose-600/90 to-transparent",
+    },
+    {
+      title: "Grab Upto 50% Off On Selected Headphones",
+      bgImage: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80",
+      buttonText: "Shop Now",
+      gradient: "from-shopcart-dark via-slate-800/90 to-transparent",
+    },
+    {
+      title: "Next Gen Smart Watches Available",
+      bgImage: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=80",
+      buttonText: "Explore",
+      gradient: "from-emerald-700 via-teal-600/90 to-transparent",
+    }
+  ];
+
   return (
-    <div className="flex flex-col items-center cursor-pointer">
-      <div className="w-full max-w-4xl mb-8 hidden sm:block" >
-        <Slider {...settings}>
-          <div>
-            <img src={Banner7} alt="Example Image" className="w-full h-auto" />
+    <div className="w-full mt-6 mb-12 overflow-hidden">
+      <Slider {...settings}>
+        {banners.map((banner, index) => (
+          <div key={index} className="outline-none">
+            <div 
+              className="relative w-full h-[350px] md:h-[450px] rounded-[2rem] overflow-hidden shadow-xl"
+              style={{
+                backgroundImage: `url(${banner.bgImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              {/* Gradient Overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-r ${banner.gradient} opacity-90`}></div>
+              
+              {/* Content */}
+              <div className="relative h-full flex flex-col justify-center px-8 md:px-16 w-full md:w-[70%] lg:w-[60%] z-10">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6 drop-shadow-md">
+                  {banner.title}
+                </h1>
+                <Link to="/">
+                  <button className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-black transition-colors duration-300 w-max shadow-lg">
+                    {banner.buttonText}
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
-          <div>
-            <img src={Banner8} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div>
-            <img src={Banner9} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div>
-            <img src={Banner10} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div >
-            <img src={Banner3} alt="Example Image" className=" flex justify-center items-center w-full h-auto" />
-          </div>
-          <div>
-            <img src={Banner4} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div>
-            <img src={Banner5} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div>
-            <img src={Banner6} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div className="flex flex-col ">
-            <img src={Banner} alt="Example Image" className="w-full h-auto" />
-            <img src={Banner2} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div>
-            <img src={one} alt="Example Image" className="w-full h-auto" />
-          </div>
-          <div>
-            <img src={two} alt="Example Image" className="w-full h-auto" />
-          </div>
-        </Slider>
-      </div>
-      <div className="m-4 ">
-        <img src={Image} alt="Example Image" style={{ cursor: "pointer" }} />
-      </div>
-      <div className="flex flex-wrap justify-center">
-        <div className="m-4 w-full sm:w-1/2 lg:w-1/4 max-w-xs">
-          <img src={Shop3} alt="Example Image" style={{ cursor: "pointer" }} className="w-full h-auto"/>
-        </div>
-        <div className="m-4 w-full sm:w-1/2 lg:w-1/4 max-w-xs">
-          <img src={Image4} alt="Example Image" style={{ cursor: "pointer" }} className="w-full h-auto"/>
-        </div>
-        <div className="m-4 w-full sm:w-1/2 lg:w-1/4 max-w-xs">
-          <img src={Shop5} alt="Example Image" style={{ cursor: "pointer" }} className="w-full h-auto"/>
-        </div>
-        <div className="m-4 w-full sm:w-1/2 lg:w-1/4 max-w-xs">
-          <img src={Shop6} alt="Example Image" style={{ cursor: "pointer" }} className="w-full h-auto"/>
-        </div>
-      </div>
+        ))}
+      </Slider>
     </div>
   );
 };

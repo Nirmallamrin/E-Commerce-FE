@@ -8,7 +8,7 @@ const ManageUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('https://e-commerce-be-yi97.onrender.com/admin/users');
+        const res = await axios.get('http://localhost:3000/admin/users');
         setUsers(res.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -19,7 +19,7 @@ const ManageUsers = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`https://e-commerce-be-yi97.onrender.com/admin/users/${userId}`);
+      await axios.delete(`http://localhost:3000/admin/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);

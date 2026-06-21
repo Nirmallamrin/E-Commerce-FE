@@ -21,7 +21,7 @@ const Payment = () => {
 
     try {
       const response = await axios.post(
-        'https://e-commerce-be-yi97.onrender.com/payment/createorder',
+        'http://localhost:3000/payment/createorder',
         {
           amount: orderDetails.totalPrice ,
           currency: 'INR',
@@ -48,7 +48,7 @@ const Payment = () => {
           console.log(response);
 
           const paymentVerificationResponse = await axios.post(
-            'https://e-commerce-be-yi97.onrender.com/payment/order/validate',
+            'http://localhost:3000/payment/order/validate',
             {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,

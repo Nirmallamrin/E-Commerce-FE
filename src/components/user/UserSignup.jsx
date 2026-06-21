@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -24,16 +25,20 @@ export default function UserSignup() {
     resolver: yupResolver(userSchema),
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data) => {
+    setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://e-commerce-be-yi97.onrender.com/users/signup",
+        "http://localhost:3000/users/signup",
         data
       );
 
       if (res.data.message === "Signed Successfully!") {
 
         sessionStorage.setItem("userToken", res.data.token);
+        sessionStorage.setItem("userName", res.data.userName || data.userName);
         console.log("token",res.data.token)
         toast.success("Successfully signed up");
         navigate("/");
@@ -42,6 +47,8 @@ export default function UserSignup() {
       }
     } catch (error) {
       console.error("Error occurred while signing in:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -85,11 +92,13 @@ export default function UserSignup() {
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
 
-        <input
+        <button
           type="submit"
-          className="rounded-md bg-black p-2 text-white cursor-pointer"
-          value="Sign Up"
-        />
+          disabled={isLoading}
+          className={`rounded-md bg-black p-2 text-white font-medium ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-shopcart-dark cursor-pointer transition-colors'}`}
+        >
+          {isLoading ? "Signing Up..." : "Sign Up"}
+        </button>
 
         <p className="mt-4">
           User already exists?{" "}

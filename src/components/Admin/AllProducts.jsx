@@ -41,7 +41,7 @@ const AllProducts = () => {
     const getAllProducts = async () => {
       try {
         const res = await axios.get(
-          "https://e-commerce-be-yi97.onrender.com/product/products"
+          "http://localhost:3000/product/products"
         );
         const data = await res.data;
         console.log("Products", data);
@@ -65,7 +65,7 @@ const AllProducts = () => {
 
     try {
       await axios.delete(
-        `https://e-commerce-be-yi97.onrender.com/product/admin/delete/${productId}`
+        `http://localhost:3000/product/admin/delete/${productId}`
       );
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
@@ -105,7 +105,7 @@ const AllProducts = () => {
 
     try {
       const res = await axios.put(
-        `https://e-commerce-be-yi97.onrender.com/product/admin/update/${selectedProduct._id}`,
+        `http://localhost:3000/product/admin/update/${selectedProduct._id}`,
         formData,
         {
           headers: {

@@ -26,15 +26,19 @@ export default function UserSignin() {
     resolver : yupResolver(schema),
   })
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data) => {
+    setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://e-commerce-be-yi97.onrender.com/users/signin" ,
+        "http://localhost:3000/users/signin" ,
         data,       
       );
         
       if(res.data.message === "Logged in!") {      
         sessionStorage.setItem('userToken', res.data.token);    
+        sessionStorage.setItem('userName', res.data.userName || "User");
         toast.success("Successfully signed in");
         navigate("/");
     }else {
@@ -44,6 +48,8 @@ export default function UserSignin() {
     } catch (error) {
       console.error("Error occurred while signing in:", error);
       toast.error("Incorrect  password. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
     
   };
@@ -77,7 +83,13 @@ export default function UserSignin() {
         />
         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
 
-        <input type="submit" className="rounded-md bg-black p-2 text-white cursor-pointer" value="Sign in" />
+        <button 
+          type="submit" 
+          disabled={isLoading}
+          className={`rounded-md bg-black p-2 text-white font-medium ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-shopcart-dark cursor-pointer transition-colors'}`}
+        >
+          {isLoading ? "Signing in..." : "Sign in"}
+        </button>
 
         <p className="mt-4">
           Create New {" "}

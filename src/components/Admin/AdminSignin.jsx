@@ -26,7 +26,7 @@ export default function AdminSignin() {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "https://e-commerce-be-yi97.onrender.com/admin/signin",
+        "http://localhost:3000/admin/signin",
         data,
       ); 
       console.log("Response data:", res.data);

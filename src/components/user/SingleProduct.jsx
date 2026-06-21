@@ -41,7 +41,7 @@ const SingleProduct = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `https://e-commerce-be-yi97.onrender.com/product/products/${id}`
+          `http://localhost:3000/product/products/${id}`
         );
         setProduct(res.data);
         setLoading(false);

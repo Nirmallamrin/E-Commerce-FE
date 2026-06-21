@@ -4,32 +4,51 @@ import { Outlet, useLocation } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import HomeImage from "../user/HomeImage";
 import Footer from "../user/Footer";
+import Reviews from "../Home/Reviews";
+import Faqs from "../Home/Faqs";
+import PopularProducts from "../Home/PopularProducts";
+import SocialMedia from "../Home/SocialMedia";
 
 const UserLayout = () => {
   const location = useLocation();
-
   const isHomePage = location.pathname === "/";
+
   return (
     <ChakraProvider>
-      <div id="top">
+      <div id="top" className="min-h-screen flex flex-col font-sans bg-white">
         <nav>
           <Navbar />
         </nav>
-        <div className="flex justify-center">
-          <Categories />
-        </div>
-        <Outlet />
+        
+        {isHomePage && (
+          <>
+            <div className="w-full">
+              <HomeImage />
+            </div>
+            <div className="w-full">
+              <Categories />
+            </div>
+            <div className="w-full mt-12">
+              <PopularProducts />
+            </div>
+            <div className="w-full">
+              <Reviews />
+            </div>
+            <div className="w-full">
+              <Faqs />
+            </div>
+            <div className="w-full">
+              <SocialMedia />
+            </div>
+          </>
+        )}
+        
+        <main className="flex-grow w-full max-w-7xl mx-auto">
+          <Outlet />
+        </main>
       </div>
 
-      {isHomePage && (
-      <div className="flex justify-center mt-8">
-        <HomeImage className="w-full sm:w-auto object-cover object-center" />
-      </div>
-      
-      )}
-      <div>
-        <Footer/>
-      </div>
+      <Footer />
     </ChakraProvider>
   );
 };

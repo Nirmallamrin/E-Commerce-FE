@@ -31,11 +31,27 @@ import AdminRoute from "./components/Routes/AdminRoute.jsx";
 import ManageUsers from "./components/Admin/ManageUsers.jsx";
 import CartCheckout from "./components/user/CartCheckout.jsx";
 
+import UserProfile from "./components/user/UserProfile.jsx";
+import ShopProducts from "./components/user/ShopProducts.jsx";
+import Wishlist from "./components/user/Wishlist.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <UserLayout />,
     children: [
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "products",
+        element: <ShopProducts />,
+      },
       {
         path: "category/:categoryName",
         element: <CategoryProducts />,
@@ -95,6 +111,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CartCheckout />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "wishlist",
+        element: (
+          <PrivateRoute>
+            <Wishlist />
           </PrivateRoute>
         ),
       },
