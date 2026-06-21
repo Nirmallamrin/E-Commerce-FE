@@ -20,7 +20,11 @@ const UserOrders = () => {
                     return;
                 }
 
-                const res = await axios.get("http://localhost:3000/order/myorders/me")
+                const res = await axios.get(`${window.API_URL}/order/myorders/me`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 setOrders(res.data)
             } catch (error) {
                 console.error('Error fetching orders:', error);

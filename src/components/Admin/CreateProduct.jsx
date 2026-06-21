@@ -39,7 +39,7 @@ const CreateProduct = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/product/admin/products/new",
+        `${window.API_URL}/product/admin/products/new`,
         requestBody,
         {
           headers: {

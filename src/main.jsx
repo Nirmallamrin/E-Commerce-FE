@@ -122,17 +122,18 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "users/signin",
+        element: <UserSignin />,
+      },
+      {
+        path: "users/signup",
+        element: <UserSignup />,
+      },
     ],
   },
 
-  {
-    path: "users/signin",
-    element: <UserSignin />,
-  },
-  {
-    path: "users/signup",
-    element: <UserSignup />,
-  },
+
   {
     path: "categories",
     element: <Categories />,

@@ -26,7 +26,7 @@ export default function AdminSignin() {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/admin/signin",
+        `${window.API_URL}/admin/signin`,
         data,
       ); 
       console.log("Response data:", res.data);

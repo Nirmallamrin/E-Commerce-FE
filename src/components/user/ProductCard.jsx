@@ -44,13 +44,13 @@ const ProductCard = ({product}) => {
       if (!isWishlisted) {
         dispatch(addToWishlist(product));
         toast.success("Added to Wishlist!");
-        await axios.post('http://localhost:3000/wishlist/add', { productId: product._id }, {
+        await axios.post(`${window.API_URL}/wishlist/add`, { productId: product._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
         dispatch(removeFromWishlist(product));
         toast.info("Removed from Wishlist");
-        await axios.post('http://localhost:3000/wishlist/remove', { productId: product._id }, {
+        await axios.post(`${window.API_URL}/wishlist/remove`, { productId: product._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }

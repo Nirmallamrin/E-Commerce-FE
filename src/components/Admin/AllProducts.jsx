@@ -41,7 +41,7 @@ const AllProducts = () => {
     const getAllProducts = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/product/products"
+          `${window.API_URL}/product/products`
         );
         const data = await res.data;
         console.log("Products", data);
@@ -65,7 +65,7 @@ const AllProducts = () => {
 
     try {
       await axios.delete(
-        `http://localhost:3000/product/admin/delete/${productId}`
+        `${window.API_URL}/product/admin/delete/${productId}`
       );
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
@@ -105,7 +105,7 @@ const AllProducts = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:3000/product/admin/update/${selectedProduct._id}`,
+        `${window.API_URL}/product/admin/update/${selectedProduct._id}`,
         formData,
         {
           headers: {

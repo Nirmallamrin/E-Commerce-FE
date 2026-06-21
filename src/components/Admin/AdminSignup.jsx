@@ -27,7 +27,7 @@ export default function AdminSignup() {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/admin/signup",
+        `${window.API_URL}/admin/signup`,
         data,
 
       );

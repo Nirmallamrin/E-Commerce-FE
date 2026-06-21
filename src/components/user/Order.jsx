@@ -56,7 +56,7 @@ const Order = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/order/new",
+        `${window.API_URL}/order/new`,
         {
           shippingAddress,
           orderItems: [

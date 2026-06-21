@@ -3,15 +3,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { FiDelete } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MailIcon, LockClosedIcon, UserIcon } from "@heroicons/react/outline";
 
 const userSchema = yup.object({
-  userName: yup.string().required(),
-  email: yup.string().email(),
-  password: yup.string().min(6),
+  userName: yup.string().required("Username is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
 });
 
 export default function UserSignup() {
@@ -19,7 +18,6 @@ export default function UserSignup() {
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm({
     resolver: yupResolver(userSchema),
@@ -30,86 +28,123 @@ export default function UserSignup() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const res = await axios.post(
-        "http://localhost:3000/users/signup",
-        data
-      );
+      const res = await axios.post(`${window.API_URL}/users/signup`, data);
 
       if (res.data.message === "Signed Successfully!") {
-
         sessionStorage.setItem("userToken", res.data.token);
         sessionStorage.setItem("userName", res.data.userName || data.userName);
-        console.log("token",res.data.token)
         toast.success("Successfully signed up");
         navigate("/");
       } else {
-        toast.error("Password is not correct");
+        toast.error("Registration failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error occurred while signing in:", error);
+      console.error("Error occurred while signing up:", error);
+      toast.error(error.response?.data || "Error creating account.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 rounded-md border p-6 bg-white shadow-lg"
-      >
-        <div className="flex justify-end">
-          <Link to="/">
-            <FiDelete className="text-2xl cursor-pointer font-bold" />
-          </Link>
+    <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+      <div className="max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+        
+        {/* Header Section */}
+        <div className="bg-gradient-to-r from-shopcart-dark to-slate-900 py-10 px-8 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-shopcart-green rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-500 rounded-full blur-3xl"></div>
+          </div>
+          <div className="relative z-10">
+            <h2 className="text-3xl font-black text-white mb-2 tracking-tight">Join Shopy</h2>
+            <p className="text-slate-300 font-medium text-sm">Create your account to unlock exclusive deals and fast checkout.</p>
+          </div>
         </div>
-        <h2 className="text-2xl font-bold text-center mb-4">Create Account</h2>
-        <input
-          {...register("userName")}
-          placeholder="Enter your username"
-          className="border rounded-md p-2"
-        />
-        {errors.userName && (
-          <p className="text-red-500 text-sm">{errors.userName.message}</p>
-        )}
 
-        <input
-          {...register("email")}
-          placeholder="Enter your email"
-          className="border rounded-md p-2"
-        />
-        {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
-        )}
+        {/* Form Section */}
+        <div className="p-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            
+            {/* Username Input */}
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Username</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <UserIcon className="h-5 w-5 text-slate-400" />
+                </div>
+                <input
+                  {...register("userName")}
+                  type="text"
+                  placeholder="johndoe123"
+                  className={`w-full pl-10 pr-4 py-3 bg-slate-50 border ${errors.userName ? 'border-red-400 focus:ring-red-500' : 'border-slate-200 focus:border-shopcart-green focus:ring-shopcart-green'} rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all`}
+                />
+              </div>
+              {errors.userName && <p className="mt-1 text-sm text-red-500 font-medium">{errors.userName.message}</p>}
+            </div>
 
-        <input
-          {...register("password")}
-          type="password"
-          placeholder="Enter your password"
-          className="border rounded-md p-2"
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm">{errors.password.message}</p>
-        )}
+            {/* Email Input */}
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Email Address</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <MailIcon className="h-5 w-5 text-slate-400" />
+                </div>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="you@example.com"
+                  className={`w-full pl-10 pr-4 py-3 bg-slate-50 border ${errors.email ? 'border-red-400 focus:ring-red-500' : 'border-slate-200 focus:border-shopcart-green focus:ring-shopcart-green'} rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all`}
+                />
+              </div>
+              {errors.email && <p className="mt-1 text-sm text-red-500 font-medium">{errors.email.message}</p>}
+            </div>
 
-        <button
-          type="submit"
-          disabled={isLoading}
-          className={`rounded-md bg-black p-2 text-white font-medium ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-shopcart-dark cursor-pointer transition-colors'}`}
-        >
-          {isLoading ? "Signing Up..." : "Sign Up"}
-        </button>
+            {/* Password Input */}
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Password</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <LockClosedIcon className="h-5 w-5 text-slate-400" />
+                </div>
+                <input
+                  {...register("password")}
+                  type="password"
+                  placeholder="••••••••"
+                  className={`w-full pl-10 pr-4 py-3 bg-slate-50 border ${errors.password ? 'border-red-400 focus:ring-red-500' : 'border-slate-200 focus:border-shopcart-green focus:ring-shopcart-green'} rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all`}
+                />
+              </div>
+              {errors.password && <p className="mt-1 text-sm text-red-500 font-medium">{errors.password.message}</p>}
+            </div>
 
-        <p className="mt-4">
-          User already exists?{" "}
-          <Link
-            to="/users/signin"
-            className="ml-2 rounded-md bg-slate-200 py-1 px-2 text-gray-600"
-          >
-            Signin
-          </Link>
-        </p>
-      </form>
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={`w-full flex justify-center mt-2 py-3.5 px-4 border border-transparent rounded-xl shadow-md text-base font-bold text-white bg-shopcart-dark hover:bg-shopcart-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-shopcart-green transition-all duration-300 ${isLoading ? 'opacity-70 cursor-not-allowed' : 'transform hover:-translate-y-0.5'}`}
+            >
+              {isLoading ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Creating account...</span>
+                </div>
+              ) : (
+                "Create Account"
+              )}
+            </button>
+          </form>
+
+          {/* Footer Actions */}
+          <div className="mt-8 text-center border-t border-slate-100 pt-6">
+            <p className="text-sm font-medium text-slate-600">
+              Already have an account?{" "}
+              <Link to="/users/signin" className="text-shopcart-green font-bold hover:underline transition-all">
+                Sign In
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

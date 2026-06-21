@@ -10,7 +10,7 @@ const PopularProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/product/products`);
+        const res = await axios.get(`${window.API_URL}/product/products`);
         // Just take the first 8 products to simulate "popular"
         setPopularProducts(res.data.slice(0, 8));
       } catch (error) {

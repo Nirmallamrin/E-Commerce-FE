@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
+import { useSearchParams } from 'react-router-dom';
 
 const ShopProducts = () => {
     const [products, setProducts] = useState([]);
@@ -13,7 +14,7 @@ const ShopProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/product/products`);
+                const res = await axios.get(`${window.API_URL}/product/products`);
                 setProducts(res.data)
             } catch (error) {
                console.error("Error in fetching products", error) 
@@ -29,8 +30,20 @@ const ShopProducts = () => {
         return ['All', ...new Set(cats)];
     }, [products]);
 
+    const [searchParams] = useSearchParams();
+    const searchQuery = searchParams.get('search') || '';
+
     const displayedProducts = useMemo(() => {
         let filtered = [...products];
+
+        // Filter by search query
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            filtered = filtered.filter(p => 
+                p.title?.toLowerCase().includes(query) || 
+                p.description?.toLowerCase().includes(query)
+            );
+        }
 
         // Filter by category
         if (selectedCategory !== 'All') {
@@ -45,7 +58,7 @@ const ShopProducts = () => {
         }
 
         return filtered;
-    }, [products, selectedCategory, sortOrder]);
+    }, [products, selectedCategory, sortOrder, searchQuery]);
 
     if (loading) {
         return (

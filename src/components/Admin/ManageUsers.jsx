@@ -8,7 +8,7 @@ const ManageUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/admin/users');
+        const res = await axios.get(`${window.API_URL}/admin/users`);
         setUsers(res.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -19,7 +19,7 @@ const ManageUsers = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:3000/admin/users/${userId}`);
+      await axios.delete(`${window.API_URL}/admin/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);
